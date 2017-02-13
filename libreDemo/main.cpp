@@ -1,14 +1,19 @@
 #include <iostream>
 using namespace std;
 
+/*
 #include "SDL.h"
 #include "SDL_image.h"
 #undef main
 
 #include "Box2D/Box2D.h"
+*/
+
+#include "MyGame.h"
 
 int main(int argc, char *argv[])
 {
+	/*
 	SDL_Window *window = nullptr;
 	SDL_Surface *screen = nullptr;
 	SDL_Renderer *renderer = nullptr;
@@ -44,4 +49,12 @@ int main(int argc, char *argv[])
 		SDL_RenderCopy(renderer, tex, nullptr, nullptr);
 		SDL_RenderPresent(renderer);
 	}
+	*/
+
+	MyGame game;
+	int code = game.Start();
+
+	cin.get();
+
+	return code;
 }

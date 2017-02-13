@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8.1)
 
 set(PROJECT_NAME "libre")
+set(DEMO_NAME "libreDemo")
 
 set(SDL "${CMAKE_SOURCE_DIR}/extlib/SDL2-2.0.5")
 set(SDL_IMAGE "${CMAKE_SOURCE_DIR}/extlib/SDL2_image-2.0.1")
@@ -9,6 +10,7 @@ set(BOX2D "${CMAKE_SOURCE_DIR}/extlib/Box2D")
 set(SDL_INCLUDE "${SDL}/include")
 set(SDL_IMAGE_INCLUDE "${SDL_IMAGE}/include")
 set(BOX2D_INCLUDE "${BOX2D}/include")
+set(LIBRE_INCLUDE "${CMAKE_SOURCE_DIR}/libre")
 
 set(SDL_LIB "${SDL}/lib/x86")
 set(SDL_IMAGE_LIB "${SDL_IMAGE}/lib/x86")
@@ -20,6 +22,7 @@ include_directories(
 	${SDL_INCLUDE}
 	${BOX2D_INCLUDE}
 	${SDL_IMAGE_INCLUDE}
+	${LIBRE_INCLUDE}
 )
 
 link_directories(
@@ -28,11 +31,17 @@ link_directories(
 	${SDL_IMAGE_LIB}
 )
 
-FILE(GLOB SOURCES src/*)
+FILE(GLOB LIBRE_SOURCES libre/*)
+FILE(GLOB DEMO_SOURCES libreDemo/*)
+
+add_library(
+    ${PROJECT_NAME}
+    ${LIBRE_SOURCES}
+)
 
 add_executable(
-    ${PROJECT_NAME}
-    ${SOURCES}
+	${DEMO_NAME}
+	${DEMO_SOURCES}
 )
 
 target_link_libraries(
@@ -41,6 +50,13 @@ target_link_libraries(
 	SDL2_image
 	Box2D-debug
 )
+
+target_link_libraries(
+	${DEMO_NAME}
+	${PROJECT_NAME}
+)
+
+if (WINDOWS)
 
 add_custom_command(
 	TARGET ${PROJECT_NAME} POST_BUILD
@@ -54,3 +70,5 @@ add_custom_command(
 	"${SDL_IMAGE_LIB}/libpng16-16.dll"
 	"${CMAKE_CURRENT_BINARY_DIR}/$<CONFIGURATION>"
 )
+
+endif()
