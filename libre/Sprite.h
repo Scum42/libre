@@ -1,5 +1,5 @@
-#ifndef SPRITE_H
-#define SPRITE_H
+#ifndef LIBRE_SPRITE_H
+#define LIBRE_SPRITE_H
 
 namespace libre
 {
