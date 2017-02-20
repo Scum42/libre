@@ -3,7 +3,7 @@
 
 
 #include "Sprite.h"
-#include "Math.h"
+#include "LibreMath.h"
 #include "Color.h"
 
 struct SDL_Renderer;
