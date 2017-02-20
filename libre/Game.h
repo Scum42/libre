@@ -7,8 +7,8 @@ namespace libre
     {
     public:
 
-        Game() : mExit(false), mExitCode(0) {}
-        ~Game() {}
+        inline Game() : mExit(false), mExitCode(0) {}
+        inline ~Game() {}
 
         // Call this to start the game. Calls Initialize(), then MainLoop(), then Cleanup(). Returns the exit code of the game.
         int Start();

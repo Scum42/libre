@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.1)
 
-set(PROJECT_NAME "libre")
-set(DEMO_NAME "libreDemo")
+set(PROJECT_NAME "Libre")
+set(DEMO_NAME "LibreDemo")
 
 set(SDL "${CMAKE_SOURCE_DIR}/extlib/SDL2-2.0.5")
 set(SDL_IMAGE "${CMAKE_SOURCE_DIR}/extlib/SDL2_image-2.0.1")
