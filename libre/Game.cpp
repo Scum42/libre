@@ -8,44 +8,44 @@ using namespace libre;
 
 int libre::Game::Start()
 {
-	InternalInit();
-	Initialize();
+    InternalInit();
+    Initialize();
 
-	MainLoop();
+    MainLoop();
 
-	Cleanup();
-	InternalCleanup();
+    Cleanup();
+    InternalCleanup();
 
-	return mExitCode;
+    return mExitCode;
 }
 
 void libre::Game::Quit(int exitCode)
 {
-	mExit = true;
-	mExitCode = exitCode;
+    mExit = true;
+    mExitCode = exitCode;
 }
 
 void libre::Game::Kill(int exitCode)
 {
-	exit(exitCode);
+    exit(exitCode);
 }
 
 void libre::Game::MainLoop()
 {
-	while (!mExit)
-	{
-		Quit();
-	}
+    while (!mExit)
+    {
+        Quit();
+    }
 }
 
 void libre::Game::InternalInit()
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
-	IMG_Init(IMG_INIT_PNG & IMG_INIT_JPG);
+    SDL_Init(SDL_INIT_EVERYTHING);
+    IMG_Init(IMG_INIT_PNG & IMG_INIT_JPG);
 }
 
 void libre::Game::InternalCleanup()
 {
-	SDL_Quit();
-	IMG_Quit();
+    SDL_Quit();
+    IMG_Quit();
 }

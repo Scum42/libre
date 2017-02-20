@@ -3,29 +3,29 @@
 
 namespace libre
 {
-	template <typename T>
-	struct Point
-	{
-		T x;
-		T y;
-	};
+    template <typename T>
+    struct Point
+    {
+        T x;
+        T y;
+    };
 
-	template <typename T>
-	struct Rect
-	{
-		T x;
-		T y;
-		T w;
-		T h;
-	};
+    template <typename T>
+    struct Rect
+    {
+        T x;
+        T y;
+        T w;
+        T h;
+    };
 
-	typedef Point<int> IPoint;
-	typedef Point<float> FPoint;
-	typedef Point<double> DPoint;
+    typedef Point<int> PointInt;
+    typedef Point<float> PointFloat;
+    typedef Point<double> PointDouble;
 
-	typedef Rect<int> IRect;
-	typedef Rect<float> FRect;
-	typedef Rect<double> DRect;
+    typedef Rect<int> RectInt;
+    typedef Rect<float> RectFloat;
+    typedef Rect<double> RectDouble;
 }
 
 #endif
