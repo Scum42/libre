@@ -3,10 +3,10 @@
 
 namespace libre
 {
-	class Sprite
-	{
+    class Sprite
+    {
 
-	};
+    };
 }
 
 #endif

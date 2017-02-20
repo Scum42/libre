@@ -8,8 +8,8 @@ using namespace std;
 
 class MyGame : public libre::Game
 {
-	virtual void Initialize() { cout << "Init\n"; }
-	virtual void Cleanup() { cout << "Cleanup\n"; }
+    virtual void Initialize() { cout << "Init\n"; }
+    virtual void Cleanup() { cout << "Cleanup\n"; }
 };
 
 #endif

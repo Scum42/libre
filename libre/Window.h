@@ -8,18 +8,18 @@
 
 namespace libre
 {
-	class Window
-	{
-	public:
-		friend Renderer;
+    class Window
+    {
+    public:
+        friend Renderer;
 
-		Renderer& GetRenderer() { return *mpRenderer; }
+        Renderer& GetRenderer() { return *mpRenderer; }
 
-	private:
+    private:
 
-		SDL_Window* mpSDLWindow;
-		Renderer* mpRenderer;
-	};
+        SDL_Window* mpSDLWindow;
+        Renderer* mpRenderer;
+    };
 }
 
 #endif
