@@ -34,18 +34,36 @@ void libre::Game::MainLoop()
 {
     while (!mExit)
     {
-        Quit();
+        PreUpdate();
+        Update();
+        PostUpdate();
     }
+}
+
+void libre::Game::Update()
+{
+    // Update
+}
+
+void libre::Game::Render()
+{
+    // Render
 }
 
 void libre::Game::InternalInit()
 {
+    // Init all SDL features
     SDL_Init(SDL_INIT_EVERYTHING);
+
+    // Init IMG for support of PNG and JPG files.
     IMG_Init(IMG_INIT_PNG & IMG_INIT_JPG);
 }
 
 void libre::Game::InternalCleanup()
 {
-    SDL_Quit();
+    // Quit IMG.
     IMG_Quit();
+
+    // Quit SDL.
+    SDL_Quit();
 }
