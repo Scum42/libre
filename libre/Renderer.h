@@ -7,10 +7,11 @@
 #include "Color.h"
 
 struct SDL_Renderer;
-class Window;
 
 namespace libre
 {
+    class Window;
+
     class Renderer
     {
     public:
