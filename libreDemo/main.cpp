@@ -52,9 +52,5 @@ int main(int argc, char *argv[])
     */
 
     MyGame game;
-    int code = game.Start();
-
-    cin.get();
-
-    return code;
+    return game.Start();
 }

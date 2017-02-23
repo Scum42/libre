@@ -56,8 +56,6 @@ target_link_libraries(
 	${PROJECT_NAME}
 )
 
-if (WINDOWS)
-
 add_custom_command(
 	TARGET ${PROJECT_NAME} POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy_if_different
@@ -70,5 +68,3 @@ add_custom_command(
 	"${SDL_IMAGE_LIB}/libpng16-16.dll"
 	"${CMAKE_CURRENT_BINARY_DIR}/$<CONFIGURATION>"
 )
-
-endif()
