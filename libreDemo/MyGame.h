@@ -1,15 +1,14 @@
-#ifndef LIBRE_MYGAME_H
-#define LIBRE_MYGAME_H
+#pragma once
 
 #include "Game.h"
 
 #include <iostream>
+
 using namespace std;
+using namespace libre;
 
-class MyGame : public libre::Game
+class MyGame : public Game
 {
-    inline virtual void Initialize() { cout << "Init\n"; Quit(); }
-    inline virtual void Cleanup() { cout << "Cleanup\n"; cin.get(); }
+    inline void Initialize() { cout << "Init\n"; Quit(); }
+    inline void Cleanup() { cout << "Cleanup\n"; cin.get(); }
 };
-
-#endif

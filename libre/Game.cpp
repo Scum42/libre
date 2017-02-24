@@ -19,17 +19,6 @@ int libre::Game::Start()
     return mExitCode;
 }
 
-void libre::Game::Quit(int exitCode)
-{
-    mExit = true;
-    mExitCode = exitCode;
-}
-
-void libre::Game::Kill(int exitCode)
-{
-    exit(exitCode);
-}
-
 void libre::Game::MainLoop()
 {
     while (!mExit)

@@ -1,13 +1,19 @@
-#ifndef LIBRE_MATH_H
-#define LIBRE_MATH_H
+#pragma once
+
+#include <cstdlib>
 
 namespace libre
 {
     template <typename T>
-    struct Point
+    struct Vector2
     {
         T x;
         T y;
+
+        inline float lengthSq() { return x*x + y*y; }
+        inline float length() { return sqrt(lengthSq()); }
+
+        inline Vector2<T>& normalize() { return *this /= length(); }
     };
 
     template <typename T>
@@ -19,13 +25,18 @@ namespace libre
         T h;
     };
 
-    typedef Point<int> PointInt;
-    typedef Point<float> PointFloat;
-    typedef Point<double> PointDouble;
+    typedef Vector2<int> Vector2i;
+    typedef Vector2<float> Vector2f;
+    typedef Vector2<double> Vector2d;
 
-    typedef Rect<int> RectInt;
-    typedef Rect<float> RectFloat;
-    typedef Rect<double> RectDouble;
+    typedef Rect<int> Recti;
+    typedef Rect<float> Rectf;
+    typedef Rect<double> Rectd;
+
+    struct Transform
+    {
+        Vector2f position;
+        Vector2f scale;
+        float rotation;
+    };
 }
-
-#endif

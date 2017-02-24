@@ -59,5 +59,5 @@ void libre::Renderer::DrawSprite(Sprite sprite)
 
 void libre::Renderer::SetRendererColor(Color c)
 {
-    SetRendererColor(c);
+
 }

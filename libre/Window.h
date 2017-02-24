@@ -1,5 +1,4 @@
-#ifndef LIBRE_WINDOW_H
-#define LIBRE_WINDOW_H
+#pragma once
 
 #include "SDL_render.h"
 
@@ -21,5 +20,3 @@ namespace libre
         Renderer* mpRenderer;
     };
 }
-
-#endif
