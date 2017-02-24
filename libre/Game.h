@@ -1,5 +1,8 @@
-#ifndef LIBRE_GAME_H
-#define LIBRE_GAME_H
+#pragma once
+
+#include <cstdlib>
+
+#include "TypeID.h"
 
 namespace libre
 {
@@ -61,5 +64,3 @@ namespace libre
         int mExitCode;
     };
 }
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef LIBRE_COLOR_H
-#define LIBRE_COLOR_H
+#pragma once
 
 namespace libre
 {
@@ -8,5 +7,3 @@ namespace libre
         short r, g, b, a;
     };
 }
-
-#endif

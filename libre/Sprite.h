@@ -1,5 +1,4 @@
-#ifndef LIBRE_SPRITE_H
-#define LIBRE_SPRITE_H
+#pragma once
 
 namespace libre
 {
@@ -8,5 +7,3 @@ namespace libre
 
     };
 }
-
-#endif
