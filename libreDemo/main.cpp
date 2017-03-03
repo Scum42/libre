@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
     }
     */
 
-    MyGame game;
-    return game.Start();
+    Game *game = new MyGame();
+    return game->Start();
+    delete game;
 }
