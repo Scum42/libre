@@ -9,8 +9,20 @@ using namespace libre;
 
 class MyGame : public Game
 {
-    inline void Initialize() { cout << "Init\n"; Quit(); }
-    inline void Cleanup() { cout << "Cleanup\n"; cin.get(); }
+    inline void Initialize()
+    {
+        cout << "Init\n";
+    }
 
-    inline virtual void PreUpdate() { cout << "Pre-Update\n"; }
+    inline void Update()
+    {
+        cout << "Update\n";
+        Quit();
+    }
+
+    inline void Cleanup()
+    {
+        cout << "Cleanup\n";
+        cin.get();
+    }
 };
