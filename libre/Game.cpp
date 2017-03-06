@@ -1,45 +1,140 @@
 #include "Game.h"
 
+#include <iostream>
+#include <ctime>
+
 #include "Box2D/Box2D.h"
 #include "SDL.h"
 #include "SDL_image.h"
 
 using namespace libre;
+using namespace std;
+
+libre::Game::Game()
+{
+    mExit = false;
+    mExitCode = 0;
+
+    mpWindow = nullptr;
+
+    mFramesPerSecond = 0.0f;
+    mDeltaTime = 0.0f;
+    mTicksPerFrame = 0;
+    mPerformanceFrequency = SDL_GetPerformanceFrequency();
+
+    srand((unsigned int)time(NULL));
+}
 
 int libre::Game::Start()
 {
-    InternalInit();
+    // Init
+    InternalInitialize();
     Initialize();
 
-    MainLoop();
+    // Timing for frames
+    Uint64 start, end;
 
-    Cleanup();
-    InternalCleanup();
-
-    return mExitCode;
-}
-
-void libre::Game::MainLoop()
-{
     while (!mExit)
     {
+        // Set start and end
+        start = SDL_GetPerformanceCounter();
+        end = start + mTicksPerFrame;
+
+        PollEvents();
+
         PreUpdate();
         Update();
         PostUpdate();
+
+        Render();
+
+        // Wait until the frame should end
+        while (SDL_GetPerformanceCounter() < end);
+
+        // Set delta time for the next frame
+        mDeltaTime = (float)(end - start) / mPerformanceFrequency;
     }
+
+    // Cleanup
+    Cleanup();
+    InternalCleanup();
+
+    // Return exit code
+    return mExitCode;
+}
+
+void libre::Game::SetFramerate(float fps)
+{
+    mFramesPerSecond = fps;
+    mTicksPerFrame = (Uint64)((1.0f / fps) * mPerformanceFrequency);
+}
+
+void libre::Game::PollEvents()
+{
+    SDL_Event e;
+    while (SDL_PollEvent(&e))
+    {
+        // TODO: Respond to events
+        switch (e.type)
+        {
+            case SDL_QUIT:
+            {
+                Quit();
+                break;
+            }
+            case SDL_KEYDOWN:
+            {
+                if (e.key.keysym.sym = SDLK_ESCAPE)
+                    Quit();
+                break;
+            }
+        }
+    }
+}
+
+void libre::Game::PreUpdate()
+{
+    // TODO: PreUpdate
 }
 
 void libre::Game::Update()
 {
-    // Update
+    // TODO: Update
+}
+
+void libre::Game::PostUpdate()
+{
+    // TODO: PostUpdate
 }
 
 void libre::Game::Render()
 {
-    // Render
+    // TODO: Render
+    Renderer* r = mpWindow->GetRenderer();
+
+    // Clear the screen
+    r->Clear();
+
+    // Draw everything in scene
+    // ...
+
+    // Show what has been drawn
+    r->Flip();
 }
 
-void libre::Game::InternalInit()
+void libre::Game::CreateWindow(std::string name, int width, int height, WindowCreationFlags flags)
+{
+    if (mpWindow) delete mpWindow;
+    mpWindow = new Window(name, width, height, flags);
+}
+
+void libre::Game::CreateWindow(std::string name, WindowCreationFlags flags)
+{
+    if (mpWindow) delete mpWindow;
+    mpWindow = new Window(name, flags);
+}
+
+void libre::Game::InternalInitialize()
 {
     // Init all SDL features
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -50,9 +145,17 @@ void libre::Game::InternalInit()
 
 void libre::Game::InternalCleanup()
 {
+    // Delete the window.
+    delete mpWindow;
+    mpWindow = nullptr;
+
     // Quit IMG.
     IMG_Quit();
 
     // Quit SDL.
     SDL_Quit();
+
+    // Reset member variables.
+    mExitCode = 0;
+    mExit = false;
 }

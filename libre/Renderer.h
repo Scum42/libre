@@ -19,6 +19,7 @@ namespace libre
 
         inline void SetClearColor(Color c);
         void Clear();
+        void Flip();
 
         void DrawLine(Color c, Vector2i start, Vector2i end) { DrawLine(c, start.x, start.y, end.x, end.y); }
         void DrawLine(Color c, int x1, int y1, int x2, int y2);
