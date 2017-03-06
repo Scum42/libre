@@ -11,7 +11,7 @@ namespace libre
     public:
         friend GameObject;
 
-        inline virtual TypeID GetTypeID() = 0;
+        inline virtual TypeID GetTypeID() const = 0;
 
         inline virtual void Initialize() {}
         inline virtual void Cleanup() {}

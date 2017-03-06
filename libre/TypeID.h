@@ -20,3 +20,6 @@ namespace libre
         }
     };
 }
+
+// Easily replicate the boilerplate code necessary for components (sorry).
+#define DEFINE_TYPE_ID(type) virtual inline libre::TypeID GetTypeID() const override { return libre::TypeIDUtility::Get<type>(); }
