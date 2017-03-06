@@ -14,6 +14,8 @@ namespace libre
     class Texture
     {
     public:
+        friend Renderer;
+
         inline Texture() { mpSDLTex = nullptr; }
         inline ~Texture() { SDL_DestroyTexture(mpSDLTex); }
 
