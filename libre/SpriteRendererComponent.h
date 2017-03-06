@@ -4,8 +4,13 @@
 
 namespace libre
 {
-    class SpriteRendererComponent : public Component
+    class SpriteRendererComponent : public libre::Component
     {
-        virtual TypeID GetTypeID() override { return TypeIDUtility::Get<SpriteRendererComponent>(); }
+        DEFINE_TYPE_ID(SpriteRendererComponent)
+
+    public:
+
+    private:
+
     };
 }
