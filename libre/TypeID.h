@@ -7,10 +7,16 @@ namespace libre
     class TypeIDUtility
     {
     private:
+
         static TypeID counter;
 
     public:
+
         template <typename T>
-        static TypeID Get();
+        inline static TypeID Get()
+        {
+            static TypeID id = counter++;
+            return id;
+        }
     };
 }
