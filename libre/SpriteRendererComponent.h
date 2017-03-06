@@ -6,6 +6,6 @@ namespace libre
 {
     class SpriteRendererComponent : public Component
     {
-        inline virtual TypeID GetTypeID() { return TypeIDUtility::Get<SpriteRendererComponent>(); }
+        virtual TypeID GetTypeID() override { return TypeIDUtility::Get<SpriteRendererComponent>(); }
     };
 }
