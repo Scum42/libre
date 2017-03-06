@@ -9,10 +9,12 @@ struct SDL_Renderer;
 namespace libre
 {
     class Window;
+    class Texture;
 
     class Renderer
     {
     public:
+        friend Texture;
 
         Renderer(Window* window);
         ~Renderer();

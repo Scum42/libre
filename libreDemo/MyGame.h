@@ -10,19 +10,13 @@ using namespace libre;
 
 class MyGame : public Game
 {
-    inline void Initialize()
-    {
-        CreateWindow("MyGame", 800, 600, LIBRE_WINDOW_POSITION_CENTER);
-        SetFramerate(60);
-    }
+public:
+    static MyGame* GetInstance();
 
-    inline void Update()
-    {
+protected:
+    void Initialize();
+    void Cleanup();
 
-    }
-
-    inline void Cleanup()
-    {
-
-    }
+private:
+    static MyGame* mspInstance;
 };
