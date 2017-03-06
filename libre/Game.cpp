@@ -46,7 +46,9 @@ int libre::Game::Start()
         Update();
         PostUpdate();
 
+        mpWindow->GetRenderer()->Clear();
         Render();
+        mpWindow->GetRenderer()->Flip();
 
         // Wait until the frame should end
         while (SDL_GetPerformanceCounter() < end);
@@ -110,16 +112,6 @@ void libre::Game::PostUpdate()
 void libre::Game::Render()
 {
     // TODO: Render
-    Renderer* r = mpWindow->GetRenderer();
-
-    // Clear the screen
-    r->Clear();
-
-    // Draw everything in scene
-    // ...
-
-    // Show what has been drawn
-    r->Flip();
 }
 
 void libre::Game::CreateWindow(std::string name, int width, int height, WindowCreationFlags flags)

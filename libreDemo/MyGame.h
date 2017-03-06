@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game.h"
+#include "GameObject.h"
 
 #include <iostream>
 #include <ctime>
@@ -19,4 +20,6 @@ protected:
 
 private:
     static MyGame* mspInstance;
+
+    GameObject* goStones;
 };
