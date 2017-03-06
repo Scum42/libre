@@ -3,6 +3,7 @@
 #include "SDL_render.h"
 
 #include "Window.h"
+#include "Texture.h"
 
 const libre::Color DEFAULT_CLEAR_COLOR = { 100, 100, 100, 255 };
 
@@ -58,9 +59,14 @@ void libre::Renderer::DrawRect(Color c, int x, int y, int w, int h)
     SDL_RenderDrawRect(mpSDLRenderer, &r);
 }
 
-void libre::Renderer::DrawSprite(Sprite sprite)
+void libre::Renderer::DrawSprite(Sprite* sprite, Vector2i position)
 {
-    // TODO: Draw sprite
+    SDL_Rect sdlrSource, sdlrDest;
+    Recti r = sprite->GetRect();
+    sdlrSource = { r.x, r.y, r.w, r.h };
+    sdlrDest = { position.x, position.y, r.w, r.h };
+
+    SDL_RenderCopy(mpSDLRenderer, sprite->GetTexture()->mpSDLTex, &sdlrSource, &sdlrDest);
 }
 
 void libre::Renderer::SetRendererColor(Color c)

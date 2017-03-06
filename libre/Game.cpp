@@ -7,6 +7,8 @@
 #include "SDL.h"
 #include "SDL_image.h"
 
+#include "Mouse.h"
+
 using namespace libre;
 using namespace std;
 
@@ -88,6 +90,12 @@ void libre::Game::PollEvents()
             {
                 if (e.key.keysym.sym = SDLK_ESCAPE)
                     Quit();
+                break;
+            }
+            case SDL_MOUSEMOTION:
+            {
+                Mouse::mPos.x = e.motion.x;
+                Mouse::mPos.y = e.motion.y;
                 break;
             }
         }

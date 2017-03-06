@@ -15,11 +15,18 @@ public:
     static MyGame* GetInstance();
 
 protected:
-    void Initialize();
-    void Cleanup();
+    virtual void Initialize() override;
+    virtual void Cleanup() override;
+
+    virtual void Update() override;
+    virtual void Render() override;
+
 
 private:
-    static MyGame* mspInstance;
+    static MyGame* spInstance;
 
     GameObject* goStones;
+
+    Texture* stoneTex;
+    Sprite* stoneSprite;
 };
