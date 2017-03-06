@@ -4,7 +4,7 @@
 
 namespace libre
 {
-    class SpriteRendererComponent : public libre::Component
+    class SpriteRendererComponent : public Component
     {
         DEFINE_TYPE_ID(SpriteRendererComponent)
 
