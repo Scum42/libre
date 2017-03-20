@@ -13,7 +13,7 @@ namespace libre
 
     public:
         // Constructor: give renderer reference
-        SpriteRendererComponent(Renderer* rend); // TODO: This is temporary
+        //SpriteRendererComponent(Renderer* rend); // TODO: This is temporary
 
         // Render from Component
         virtual void Render() override;
@@ -23,6 +23,6 @@ namespace libre
 
     private:
         Sprite* mpSprite;
-        Renderer* mpRenderer;
+        //Renderer* mpRenderer;
     };
 }

@@ -12,6 +12,8 @@
 using namespace libre;
 using namespace std;
 
+Game* libre::Game::spInstance = nullptr;
+
 libre::Game::Game()
 {
     mExit = false;
@@ -23,6 +25,8 @@ libre::Game::Game()
     mDeltaTime = 0.0f;
     mTicksPerFrame = 0;
     mPerformanceFrequency = SDL_GetPerformanceFrequency();
+
+    spInstance = this;
 
     srand((unsigned int)time(NULL));
 }
@@ -84,12 +88,6 @@ void libre::Game::PollEvents()
             case SDL_QUIT:
             {
                 Quit();
-                break;
-            }
-            case SDL_KEYDOWN:
-            {
-                if (e.key.keysym.sym = SDLK_ESCAPE)
-                    Quit();
                 break;
             }
             case SDL_MOUSEMOTION:

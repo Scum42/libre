@@ -6,25 +6,19 @@
 
 #include "FollowMouse.h"
 
-MyGame* MyGame::spInstance = nullptr;
-
-MyGame* MyGame::GetInstance()
-{
-    if (!spInstance) spInstance = new MyGame();
-    return spInstance;
-}
-
 void MyGame::Initialize()
 {
     CreateWindow("MyGame", 800, 600, LIBRE_WINDOW_POSITION_CENTER);
     SetFramerate(60);
 
+    Game::GetInstance();
+
     goStones = new GameObject();
-    SpriteRendererComponent* src = dynamic_cast<SpriteRendererComponent*>(goStones->AddComponent(new SpriteRendererComponent(GetWindow()->GetRenderer())));
-    goStones->AddComponent(new FollowMouse());
+    SpriteRendererComponent* src = goStones->AddComponent<SpriteRendererComponent>();
+    goStones->AddComponent<FollowMouse>();
 
     stoneTex = new Texture();
-    stoneTex->LoadFromFile(GetWindow()->GetRenderer(), "../res/stones.png");
+    stoneTex->LoadFromFile("../res/stones.png");
     if (!stoneTex)
     {
         cout << "texture is null";

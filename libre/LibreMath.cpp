@@ -1,5 +1,7 @@
 #include "LibreMath.h"
 
+#include <cmath>
+
 using namespace libre;
 
 // ========================================================
