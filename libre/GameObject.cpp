@@ -60,11 +60,13 @@ void libre::GameObject::Render()
     }
 }
 
-libre::Component* libre::GameObject::AddComponent(libre::Component* component)
+template <typename T>
+T* libre::GameObject::AddComponent()
 {
-    mComponents.push_back(component);
-    component->mpGameObject = this;
-    return component;
+    T* newComp = new T();
+    mComponents.push_back(newComp);
+    newComp->mpGameObject = this;
+    return newComp;
 }
 
 libre::Transform libre::GameObject::GetGlobalTransform()

@@ -36,7 +36,8 @@ namespace libre
         GameObject* GetParent() { return mpParent; }
 
         // Adds a component to this GameObject. From this point forward, it's the GameObject's job to clean it up.
-        Component* AddComponent(Component* component);
+        template <typename T>
+        T* AddComponent();
 
         // Get component by type. Returns nullptr if no such component was found.
         template <typename T>

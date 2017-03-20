@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdlib>
+#include <cmath>
 
 namespace libre
 {
@@ -50,4 +51,11 @@ namespace libre
         Vector2f scale;
         float rotation;
     };
+
+    inline int Round(double in) { return (int)round(in); }
+    inline int Round(float in) { return (int)round(in); }
+    inline int Floor(double in) { return (int)floor(in); }
+    inline int Floor(float in) { return (int)floor(in); }
+    inline int Ceil(double in) { return (int)ceil(in); }
+    inline int Ceil(float in) { return (int)ceil(in); }
 }

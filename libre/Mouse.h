@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LibreMath.h";
+#include "LibreMath.h"
 
 namespace libre
 {

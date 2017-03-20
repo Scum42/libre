@@ -12,6 +12,9 @@ namespace libre
     {
     public:
 
+        // Get the game internally
+        static Game* GetInstance() { return spInstance; }
+
         // Constructor
         Game();
 
@@ -62,6 +65,9 @@ namespace libre
         void CreateWindow(std::string name, WindowCreationFlags flags);
 
     private:
+
+        // Static reference to myself
+        static Game* spInstance;
 
         // Initialize SDL and other things.
         void InternalInitialize();
