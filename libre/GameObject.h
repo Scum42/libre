@@ -11,14 +11,13 @@ namespace libre
     class GameObject
     {
     public:
+        // Constructor.
         GameObject();
-        inline ~GameObject() { Cleanup(); }
+        // Destructor. Calls Cleanup() on all components, then destroys them.
+        inline ~GameObject();
 
         // Calls Initialize on all components.
         void Initialize();
-
-        // Calls Cleanup on all components, then destroys them.
-        void Cleanup();
 
         // Calls PreUpdate on all components.
         void PreUpdate();
@@ -37,7 +36,17 @@ namespace libre
 
         // Adds a component to this GameObject. From this point forward, it's the GameObject's job to clean it up.
         template <typename T>
-        T* AddComponent();
+        inline T* AddComponent()
+        {
+            T* newComp = new T();
+            mComponents.push_back(newComp);
+            newComp->mpGameObject = this;
+            return newComp;
+        }
+
+        // Adds a component to this GameObject, but returns the GameObject rather than the component for chaining.
+        template <typename T>
+        GameObject* AddComponentChain() { AddComponent<T>(); return this; }
 
         // Get component by type. Returns nullptr if no such component was found.
         template <typename T>

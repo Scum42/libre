@@ -8,24 +8,26 @@ libre::GameObject::GameObject()
     transform = Transform();
 }
 
-void libre::GameObject::Initialize()
+inline libre::GameObject::~GameObject()
 {
-    for (Component* c : mComponents)
+    for (unsigned int i = 0; i < mComponents.size(); i++)
     {
-        c->Initialize();
-    }
-}
+        if (mComponents[i] == nullptr) continue;
 
-void libre::GameObject::Cleanup()
-{
-    for (int i = 0; i < mComponents.size(); i++)
-    {
         mComponents[i]->Cleanup();
         delete mComponents[i];
         mComponents[i] = nullptr;
     }
 
     mComponents.clear();
+}
+
+void libre::GameObject::Initialize()
+{
+    for (Component* c : mComponents)
+    {
+        c->Initialize();
+    }
 }
 
 void libre::GameObject::PreUpdate()
@@ -58,15 +60,6 @@ void libre::GameObject::Render()
     {
         c->Render();
     }
-}
-
-template <typename T>
-T* libre::GameObject::AddComponent()
-{
-    T* newComp = new T();
-    mComponents.push_back(newComp);
-    newComp->mpGameObject = this;
-    return newComp;
 }
 
 libre::Transform libre::GameObject::GetGlobalTransform()
