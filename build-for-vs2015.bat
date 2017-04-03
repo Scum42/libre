@@ -7,5 +7,3 @@ if not exist %bfolder% mkdir %bfolder%
 cd %bfolder%
 
 cmake -G %genfor% ..
-
-pause
