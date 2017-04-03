@@ -14,6 +14,6 @@
 #include "core/Texture.h"
 #include "core/Window.h"
 
-#include "core/components/SpriteRendererComponent.h"
+#include "std/components/SpriteRendererComponent.h"
 
 #undef main
