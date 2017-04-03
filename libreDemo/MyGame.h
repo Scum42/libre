@@ -1,7 +1,6 @@
 #pragma once
 
-#include "Game.h"
-#include "GameObject.h"
+#include "libre/libre.h"
 
 #include <iostream>
 #include <ctime>

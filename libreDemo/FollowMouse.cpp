@@ -1,7 +1,7 @@
 #include "FollowMouse.h"
 
-#include "GameObject.h"
-#include "Mouse.h"
+#include "libre/core/GameObject.h"
+#include "libre/input/Mouse.h"
 
 void FollowMouse::Update()
 {

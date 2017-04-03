@@ -1,9 +1,5 @@
 #include "MyGame.h"
 
-#include "GameObject.h"
-#include "SpriteRendererComponent.h"
-#include "Texture.h"
-
 #include "FollowMouse.h"
 
 void MyGame::Initialize()
