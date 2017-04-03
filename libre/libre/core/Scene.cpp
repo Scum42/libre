@@ -14,3 +14,27 @@ libre::Scene::~Scene()
 
     mGameObjects.clear();
 }
+
+void libre::Scene::PreUpdate()
+{
+    for (auto iter : mGameObjects)
+    {
+        iter->PreUpdate();
+    }
+}
+
+void libre::Scene::Update()
+{
+    for (auto iter : mGameObjects)
+    {
+        iter->Update();
+    }
+}
+
+void libre::Scene::PostUpdate()
+{
+    for (auto iter : mGameObjects)
+    {
+        iter->PostUpdate();
+    }
+}

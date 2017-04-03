@@ -24,7 +24,13 @@ namespace libre
         inline virtual void Cleanup() {}
 
         // Calls PreUpdate on all objects in the scene.
+        virtual void PreUpdate();
 
+        // Calls Update on all objects in the scene.
+        virtual void Update();
+
+        // Calls PostUpdate on all objects in the scene.
+        virtual void PostUpdate();
     private:
         std::list<GameObject*> mGameObjects;
     };
