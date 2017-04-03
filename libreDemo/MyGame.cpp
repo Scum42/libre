@@ -17,12 +17,12 @@ void MyGame::Initialize()
     stoneTex->LoadFromFile("../res/stones.png");
     if (!stoneTex)
     {
-        cout << "texture is null";
+        cout << "Texture failed to load!\n";
         cin.get();
         Kill();
     }
 
-    stoneSprite = stoneTex->CreateSpriteFromSubsection({ 0, 0, 100, 100 });
+    stoneSprite = stoneTex->CreateSpriteFromSubsection({ 50, 50, 100, 100 });
 
     src->SetSprite(stoneSprite);
 }
