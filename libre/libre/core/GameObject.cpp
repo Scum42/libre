@@ -5,6 +5,16 @@
 libre::GameObject::GameObject()
 {
     mpParent = nullptr;
+    mName = "GameObject";
+    mIsMarkedForDeath = false;
+    transform = Transform();
+}
+
+libre::GameObject::GameObject(std::string name)
+{
+    mpParent = nullptr;
+    mName = name;
+    mIsMarkedForDeath = false;
     transform = Transform();
 }
 

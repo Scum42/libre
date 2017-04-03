@@ -28,6 +28,8 @@ libre::Game::Game()
 
     spInstance = this;
 
+    mpScene = nullptr;
+
     srand((unsigned int)time(NULL));
 }
 

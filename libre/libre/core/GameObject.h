@@ -7,12 +7,16 @@
 namespace libre
 {
     class Component;
+    class Scene;
 
     class GameObject
     {
     public:
+        friend Scene;
+
         // Constructor.
         GameObject();
+        GameObject(std::string name);
         // Destructor. Calls Cleanup() on all components, then destroys them.
         ~GameObject();
 
@@ -34,6 +38,12 @@ namespace libre
         // Returns the parent of this game object. Returns nullptr if it is a top level game object.
         GameObject* GetParent() { return mpParent; }
 
+        // Returns the scene the game object is in.
+        Scene* GetScene() { return mpScene; }
+
+        // Returns the object's name.
+        const std::string& GetName() { return mName; }
+
         // Adds a component to this GameObject. From this point forward, it's the GameObject's job to clean it up.
         template <typename T>
         inline T* AddComponent()
@@ -46,14 +56,13 @@ namespace libre
 
         // Adds a component to this GameObject, but returns the GameObject rather than the component for chaining.
         template <typename T>
-        GameObject* AddComponentChain() { AddComponent<T>(); return this; }
+        GameObject* ChainComponent() { AddComponent<T>(); return this; }
 
         // Get component by type. Returns nullptr if no such component was found.
         template <typename T>
         inline T* GetComponent()
         {
             type_info info = typeid(T);
-            //TypeID id = TypeIDUtility::Get<T>();
 
             for (Component* c : mComponents)
             {
@@ -69,8 +78,17 @@ namespace libre
         // The global transform of the object. Read-only.
         Transform GetGlobalTransform();
 
+        // Is this GameObject marked for destruction?
+        inline bool IsMarkedForDestruction() { return mIsMarkedForDeath; }
+
+        // Mark this GameObject for destruction
+        inline void Destroy() { mIsMarkedForDeath = true; }
+
     private:
         GameObject* mpParent;
+        Scene* mpScene;
+        std::string mName;
         std::vector<Component*> mComponents;
+        bool mIsMarkedForDeath;
     };
 }

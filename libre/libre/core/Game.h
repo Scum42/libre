@@ -7,6 +7,8 @@
 
 namespace libre
 {
+    class Scene;
+
     class Game
     {
     public:
@@ -31,6 +33,15 @@ namespace libre
 
         // Get DeltaTime
         inline float GetDeltaTime() { return mDeltaTime; }
+
+        // Set the scene. Destroys the old scene and creates the new one.
+        template <typename T>
+        inline void SetScene()
+        {
+            if (mpScene) delete mpScene;
+            mpScene = new T();
+            mpScene->Initialize();
+        }
 
         // Set the framerate
         void SetFramerate(float fps);
@@ -86,5 +97,8 @@ namespace libre
 
         // The window
         Window* mpWindow;
+
+        // The current scene
+        Scene* mpScene;
     };
 }
