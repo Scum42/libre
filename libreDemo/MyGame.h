@@ -13,13 +13,4 @@ class MyGame : public Game
 protected:
     virtual void Initialize() override;
     virtual void Cleanup() override;
-
-    virtual void Update() override;
-    virtual void Render() override;
-
-private:
-    GameObject* goStones;
-
-    Texture* stoneTex;
-    Sprite* stoneSprite;
 };

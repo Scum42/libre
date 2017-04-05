@@ -31,9 +31,6 @@ namespace libre
         // Get the window.
         inline Window* GetWindow() { return mpWindow; }
 
-        // Get DeltaTime
-        inline float GetDeltaTime() { return mDeltaTime; }
-
         // Set the scene. Destroys the old scene and creates the new one.
         template <typename T>
         inline void SetScene()
@@ -93,7 +90,6 @@ namespace libre
         float mFramesPerSecond;
         Uint64 mTicksPerFrame;
         Uint64 mPerformanceFrequency;
-        float mDeltaTime;
 
         // The window
         Window* mpWindow;

@@ -30,7 +30,7 @@ namespace libre
         // Calls PostUpdate on all objects in the scene.
         virtual void PostUpdate();
 
-        // Destroys all objects marked for deletion.
+        // Destroys all objects marked for deletion. Called after PostUpdate().
         inline void EndFrame() { mGameObjects.remove_if(marked()); }
 
         // Calls Render on all objects in the scene.

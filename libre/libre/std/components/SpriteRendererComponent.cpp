@@ -3,11 +3,7 @@
 #include "libre/core/Renderer.h"
 #include "libre/core/GameObject.h"
 #include "libre/core/Game.h"
-
-/*libre::SpriteRendererComponent::SpriteRendererComponent(libre::Renderer* rend)
-{
-    mpRenderer = rend;
-}*/
+#include "libre/core/Texture.h"
 
 void libre::SpriteRendererComponent::Render()
 {
@@ -18,7 +14,21 @@ void libre::SpriteRendererComponent::Render()
     rend->DrawSprite(mpSprite, pos);
 }
 
-void libre::SpriteRendererComponent::SetSprite(Sprite* sprite)
+libre::Sprite* libre::SpriteRendererComponent::SetSprite(libre::Sprite* sprite)
 {
     mpSprite = sprite;
+    return mpSprite;
+}
+
+libre::Sprite* libre::SpriteRendererComponent::SetSprite(std::string filename)
+{
+    return SetSprite(filename, { 0,0,0,0 });
+}
+
+libre::Sprite* libre::SpriteRendererComponent::SetSprite(std::string filename, libre::Recti spriteRect)
+{
+    Texture* tex = new Texture();
+    tex->LoadFromFile(filename);
+    Sprite* spr = tex->CreateSpriteFromSubsection(spriteRect);
+    return SetSprite(spr);
 }

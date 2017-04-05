@@ -8,6 +8,8 @@
 #include "SDL_image.h"
 
 #include "libre/input/Mouse.h"
+#include "libre/core/Scene.h"
+#include "libre/util/Time.h"
 
 using namespace libre;
 using namespace std;
@@ -22,9 +24,11 @@ libre::Game::Game()
     mpWindow = nullptr;
 
     mFramesPerSecond = 0.0f;
-    mDeltaTime = 0.0f;
     mTicksPerFrame = 0;
     mPerformanceFrequency = SDL_GetPerformanceFrequency();
+
+    Time::deltaTime = 0.0f;
+    Time::totalTime = 0.0f;
 
     spInstance = this;
 
@@ -62,7 +66,8 @@ int libre::Game::Start()
         while (SDL_GetPerformanceCounter() < end);
 
         // Set delta time for the next frame
-        mDeltaTime = (float)(end - start) / mPerformanceFrequency;
+        Time::deltaTime = (float)(end - start) / mPerformanceFrequency;
+        Time::totalTime += Time::deltaTime;
     }
 
     // Cleanup
@@ -84,7 +89,7 @@ void libre::Game::PollEvents()
     SDL_Event e;
     while (SDL_PollEvent(&e))
     {
-        // TODO: Respond to events
+        // Convert SDL events to usable info
         switch (e.type)
         {
             case SDL_QUIT:
@@ -104,22 +109,23 @@ void libre::Game::PollEvents()
 
 void libre::Game::PreUpdate()
 {
-    // TODO: PreUpdate
+    mpScene->PreUpdate();
 }
 
 void libre::Game::Update()
 {
-    // TODO: Update
+    mpScene->Update();
 }
 
 void libre::Game::PostUpdate()
 {
-    // TODO: PostUpdate
+    mpScene->PostUpdate();
+    mpScene->EndFrame();
 }
 
 void libre::Game::Render()
 {
-    // TODO: Render
+    mpScene->Render();
 }
 
 void libre::Game::CreateWindow(std::string name, int width, int height, WindowCreationFlags flags)
