@@ -64,7 +64,7 @@ namespace libre
         virtual void Render();
 
         // Called after MainLoop exits.
-        virtual void Cleanup() = 0;
+        virtual void Cleanup() {}
 
         // Create the window. The window is stored internally, and will be cleaned up automatically.
         void CreateWindow(std::string name, int width, int height, WindowCreationFlags flags);

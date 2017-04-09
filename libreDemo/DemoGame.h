@@ -12,5 +12,4 @@ class DemoGame : public Game
 {
 protected:
     virtual void Initialize() override;
-    virtual void Cleanup() override;
 };

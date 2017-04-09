@@ -147,6 +147,9 @@ void libre::Game::InternalInitialize()
 
     // Init IMG for support of PNG and JPG files.
     IMG_Init(IMG_INIT_PNG & IMG_INIT_JPG);
+
+    // Default to 60 FPS
+    SetFramerate(60);
 }
 
 void libre::Game::InternalCleanup()
