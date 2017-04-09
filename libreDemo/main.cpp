@@ -1,7 +1,7 @@
-#include "MyGame.h"
+#include "DemoGame.h"
 
 int main(int argc, char *argv[])
 {
-    MyGame game;
+    DemoGame game;
     return game.Start();
 }
