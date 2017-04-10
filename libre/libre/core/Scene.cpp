@@ -70,7 +70,7 @@ libre::Scene::~Scene()
 void libre::Scene::PreUpdate()
 {
     // Update physics absolutely first
-    mB2World.Step(Time::deltaTime, 5, 5);
+    mB2World.Step(Time::deltaTime, 8, 3);
 
     for (auto iter : mGameObjects)
     {

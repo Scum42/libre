@@ -32,9 +32,6 @@ void libre::GroundBoxComponent::Initialize()
     mpB2GroundBoxBody = mpB2WorldFromScene->CreateBody(&mB2GroundBoxDef);
     mB2GroundBox.SetAsBox(finaldim.x, finaldim.y);
     mpB2GroundBoxBody->CreateFixture(&mB2GroundBox, 0.0f);
-
-    GetGameObject()->transform.position.x = mpB2GroundBoxBody->GetPosition().x * mtop - dim.x * 0.5f;
-    GetGameObject()->transform.position.y = mpB2GroundBoxBody->GetPosition().y * mtop - mGroundHeightInPixels * 0.5f;
 }
 
 void libre::GroundBoxComponent::Startup()
@@ -43,7 +40,7 @@ void libre::GroundBoxComponent::Startup()
 
     if (rrc)
     {
-        rrc->SetColor(Color(20, 20, 20));
+        rrc->SetColor(Color(0, 255, 0));
         rrc->SetWidth(mWidthInPixels);
         rrc->SetHeight(mHeightInPixels);
     }

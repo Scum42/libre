@@ -9,11 +9,15 @@
 namespace libre
 {
     class Game;
+    class RigidbodyComponent;
+    class GroundBoxComponent;
 
     class Scene
     {
     public:
         friend Game;
+        friend RigidbodyComponent;
+        friend GroundBoxComponent;
 
         // Constructor.
         Scene();

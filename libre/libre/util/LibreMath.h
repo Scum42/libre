@@ -43,9 +43,9 @@ namespace libre
             return *this / length(); 
         }
 
-        inline Vector2<T> operator-()
+        inline Vector2<T> operator-() const
         {
-            return {-(this->x), -(this->y) };
+            return Vector2<T>(-x, -y);
         }
 
         inline Vector2<T> operator-(const Vector2<T>& rhs)

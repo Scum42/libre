@@ -14,4 +14,7 @@ void DemoScene::Initialize()
     GameObject* goGround = AddGameObject("ground");
     goGround->AddComponent<GroundBoxComponent>()->SetGroundHeight(50.0f);
     goGround->AddComponent<RectRendererComponent>();
+
+    GameObject* goTest = AddGameObject("test");
+    goTest->AddComponent<RigidbodyComponent>();
 }
