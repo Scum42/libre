@@ -2,6 +2,7 @@
 
 #include <typeinfo>
 
+#include "libre/util/Time.h"
 #include "GameObject.h"
 
 libre::GameObject* libre::Scene::FindGameObject(const std::string& name)
@@ -68,6 +69,9 @@ libre::Scene::~Scene()
 
 void libre::Scene::PreUpdate()
 {
+    // Update physics absolutely first
+    mB2World.Step(Time::deltaTime, 5, 5);
+
     for (auto iter : mGameObjects)
     {
         iter->PreUpdate();

@@ -3,20 +3,33 @@
 #include <cstdlib>
 #include <cmath>
 
+#include "Box2D\Box2D.h"
+
 namespace libre
 {
+    const float PI = 3.14159f;
+    const float PI_INV = 1.0f / PI;
+    const float DEG_TO_RAD_FACTOR = PI / 180.0f;
+    const float RAD_TO_DEG_FACTOR = 180.0f / PI;
+
     template <typename T>
     struct Vector2
     {
         inline Vector2() { x = static_cast<T>(0); y = static_cast<T>(0); }
         inline Vector2(T x, T y) { this->x = x; this->y = y; }
 
-        // Conversion constructor
+        // Conversion constructors
         template <typename U>
         inline Vector2(const Vector2<U>& other)
         {
             x = static_cast<T>(other.x);
             y = static_cast<T>(other.y);
+        }
+
+        inline Vector2(const b2Vec2& other)
+        {
+            x = other.x;
+            y = other.y;
         }
 
         T x;
@@ -25,7 +38,26 @@ namespace libre
         inline float lengthSq() { return x*x + y*y; }
         inline float length() { return sqrt(lengthSq()); }
 
-        inline Vector2<T>& normalize() { return *this /= length(); }
+        inline Vector2<T>& normalize()
+        {
+            return *this / length(); 
+        }
+
+        inline Vector2<T> operator-()
+        {
+            return {-(this->x), -(this->y) };
+        }
+
+        inline Vector2<T> operator-(const Vector2<T>& rhs)
+        {
+            return *this + (-rhs);
+        }
+
+        inline Vector2<T>& operator-=(const Vector2<T>& rhs)
+        {
+            *this = *this - rhs;
+            return *this;
+        }
 
         inline Vector2<T> operator+(const Vector2<T>& rhs)
         {

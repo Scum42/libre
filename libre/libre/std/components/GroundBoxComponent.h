@@ -11,13 +11,15 @@ namespace libre
     {
     public:
 
-        inline void SetGroundHeight(float height) { mGroundHeight = height; }
+        inline void SetGroundHeight(float height) { mGroundHeightInPixels = height; }
 
-        inline float GetHeight() { return mWidth; }
-        inline float GetWidth() { return mHeight; }
+        inline float GetHeight() { return mWidthInPixels; }
+        inline float GetWidth() { return mHeightInPixels; }
 
         void Initialize() override;
         void Startup() override;
+
+        void Update() override;
 
     private:
 
@@ -27,9 +29,9 @@ namespace libre
 
         b2World* mpB2WorldFromScene;
 
-        float mWidth;
-        float mHeight;
+        float mWidthInPixels;
+        float mHeightInPixels;
 
-        float mGroundHeight;
+        float mGroundHeightInPixels;
     };
 }

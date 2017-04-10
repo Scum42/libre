@@ -88,10 +88,10 @@ namespace libre
         void SetMetersPerPixel(float metersPerPixel);
 
         // Get the pixel-per-meter ratio
-        inline float GetPixelsPerMeter() { return mPixelsPerMeter; }
+        inline float GetMeterToPixelFactor() { return mPixelsPerMeter; }
 
         // Get the meter-per-pixel ratio
-        inline float GetMetersPerPixel() { return mMetersPerPixel; }
+        inline float GetPixelToMeterFactor() { return mMetersPerPixel; }
 
         // Get the Box2D 'world' that is being used. Meant for internal use.
         inline b2World* internal_GetB2World() { return &mB2World; }
