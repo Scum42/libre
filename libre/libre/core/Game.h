@@ -38,7 +38,7 @@ namespace libre
             if (mpScene) delete mpScene;
             mpScene = new T();
             mpScene->Initialize();
-            mpScene->InitializeGameObjects();
+            mpScene->internal_InitializeGameObjects();
         }
 
         // Set the framerate
@@ -78,10 +78,10 @@ namespace libre
         static Game* spInstance;
 
         // Initialize SDL and other things.
-        void InternalInitialize();
 
+        void internal_Initialize();
         // Cleanup SDL and other things.
-        void InternalCleanup();
+        void internal_Cleanup();
 
         // Exit information
         bool mExit;

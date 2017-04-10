@@ -23,9 +23,8 @@ libre::Game::Game()
 
     mpWindow = nullptr;
 
-    mFramesPerSecond = 0.0f;
-    mTicksPerFrame = 0;
     mPerformanceFrequency = SDL_GetPerformanceFrequency();
+    SetFramerate(60);
 
     Time::deltaTime = 0.0f;
     Time::totalTime = 0.0f;
@@ -40,7 +39,7 @@ libre::Game::Game()
 int libre::Game::Start()
 {
     // Init
-    InternalInitialize();
+    internal_Initialize();
     Initialize();
 
     // Timing for frames
@@ -72,7 +71,7 @@ int libre::Game::Start()
 
     // Cleanup
     Cleanup();
-    InternalCleanup();
+    internal_Cleanup();
 
     // Return exit code
     return mExitCode;
@@ -140,19 +139,16 @@ void libre::Game::CreateWindow(std::string name, WindowCreationFlags flags)
     mpWindow = new Window(name, flags);
 }
 
-void libre::Game::InternalInitialize()
+void libre::Game::internal_Initialize()
 {
     // Init all SDL features
     SDL_Init(SDL_INIT_EVERYTHING);
 
     // Init IMG for support of PNG and JPG files.
     IMG_Init(IMG_INIT_PNG & IMG_INIT_JPG);
-
-    // Default to 60 FPS
-    SetFramerate(60);
 }
 
-void libre::Game::InternalCleanup()
+void libre::Game::internal_Cleanup()
 {
     // Delete the window.
     delete mpWindow;

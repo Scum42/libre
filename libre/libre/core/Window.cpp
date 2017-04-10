@@ -30,6 +30,13 @@ libre::Window::~Window()
     }
 }
 
+libre::Vector2i libre::Window::GetDimensions()
+{
+    Vector2i result;
+    SDL_GetWindowSize(mpSDLWindow, &result.x, &result.y);
+    return result;
+}
+
 Uint32 libre::Window::LibreToSQLFlags(WindowCreationFlags flags)
 {
     Uint32 sdlFlags = 0;

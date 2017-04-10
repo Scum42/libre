@@ -20,6 +20,9 @@ namespace libre
         // Destructor. Calls Cleanup() on all components, then destroys them.
         ~GameObject();
 
+        // Override and add components inside this function to create game objects that come pre-packaged with components.
+        virtual void Setup() {}
+
         // Calls Initialize on all components.
         void Initialize();
 

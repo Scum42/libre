@@ -36,6 +36,15 @@ namespace libre
         // Destructor
         ~Window();
 
+        // Get the width of the screen
+        int GetWidth() { return GetDimensions().x; }
+
+        // Get the height of the screen
+        int GetHeight() { return GetDimensions().y; }
+
+        // Get the width and height of the screen
+        Vector2i GetDimensions();
+
         // Get the renderer associated with this window
         Renderer* GetRenderer() { return mpRenderer; }
 

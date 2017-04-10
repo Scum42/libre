@@ -59,30 +59,30 @@ void libre::Renderer::DrawRect(Color c, int x, int y, int w, int h)
     SDL_RenderDrawRect(mpSDLRenderer, &r);
 }
 
-void libre::Renderer::DrawSprite(Sprite* sprite, Vector2i position)
+void libre::Renderer::DrawSprite(Sprite* sprite, Vector2f scale, Vector2i position)
 {
     SDL_Rect sdlrSource, sdlrDest;
     Recti r = sprite->GetRect();
     sdlrSource = { r.x, r.y, r.w, r.h };
-    sdlrDest = { position.x, position.y, r.w, r.h };
+    sdlrDest = { position.x, position.y, Round(r.w * scale.x), Round(r.h * scale.y) };
 
     SDL_RenderCopy(mpSDLRenderer, sprite->GetTexture()->mpSDLTex, &sdlrSource, &sdlrDest);
 }
 
-void libre::Renderer::DrawSprite(Sprite * sprite, Vector2i position, float angle)
+void libre::Renderer::DrawSprite(Sprite * sprite, Vector2f scale, Vector2i position, float angle)
 {
     // If the angle is 0...
     if (angle == 0.0f)
     {
         // Use the faster version that doesn't bother with rotate
-        DrawSprite(sprite, position);
+        DrawSprite(sprite, scale, position);
         return;
     }
 
     SDL_Rect sdlrSource, sdlrDest;
     Recti r = sprite->GetRect();
     sdlrSource = { r.x, r.y, r.w, r.h };
-    sdlrDest = { position.x, position.y, r.w, r.h };
+    sdlrDest = { position.x, position.y, Round(r.w * scale.x), Round(r.h * scale.y) };
 
     SDL_RenderCopyEx(mpSDLRenderer, sprite->GetTexture()->mpSDLTex, &sdlrSource, &sdlrDest, angle, NULL, SDL_FLIP_NONE);
 }

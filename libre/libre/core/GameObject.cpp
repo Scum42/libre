@@ -16,6 +16,7 @@ libre::GameObject::GameObject(std::string name)
     mName = name;
     mIsMarkedForDeath = false;
     transform = Transform();
+    Setup();
 }
 
 libre::GameObject::~GameObject()

@@ -8,8 +8,16 @@ namespace libre
     template <typename T>
     struct Vector2
     {
-        inline Vector2() { x = 0; y = 0; }
+        inline Vector2() { x = static_cast<T>(0); y = static_cast<T>(0); }
         inline Vector2(T x, T y) { this->x = x; this->y = y; }
+
+        // Conversion constructor
+        template <typename U>
+        inline Vector2(const Vector2<U>& other)
+        {
+            x = static_cast<T>(other.x);
+            y = static_cast<T>(other.y);
+        }
 
         T x;
         T y;
@@ -62,7 +70,7 @@ namespace libre
         }
 
         static Vector2<T> Zero() { return Vector2<T>(); }
-        static Vector2<T> One() { return Vector2<T>(1, 1); }
+        static Vector2<T> One() { return Vector2<T>(static_cast<T>(1), static_cast<T>(1)); }
     };
 
     template <typename T>

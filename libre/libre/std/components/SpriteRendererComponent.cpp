@@ -11,7 +11,7 @@ void libre::SpriteRendererComponent::Render()
 
     Vector2f posf = GetGameObject()->transform.position;
     Vector2i pos = { Round(posf.x), Round(posf.y) };
-    rend->DrawSprite(mpSprite, pos, GetGameObject()->transform.rotation);
+    rend->DrawSprite(mpSprite, GetGameObject()->transform.scale, pos, GetGameObject()->transform.rotation);
 }
 
 libre::Sprite* libre::SpriteRendererComponent::SetSprite(libre::Sprite* sprite)
