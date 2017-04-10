@@ -78,6 +78,21 @@ namespace libre
             return nullptr;
         }
 
+        // Get all components by type. Vector is empty if none were found.
+        template <typename T>
+        inline std::vector<T*> GetAllComponentsOfType()
+        {
+            std::vector<T*> comps;
+            const type_info& info = typeid(T);
+
+            for (Component* c : mComponents)
+            {
+                if (typeid(*c) == info) comps.push_back(c);
+            }
+
+            return comps;
+        }
+
         // The local transform of the object.
         Transform transform;
 

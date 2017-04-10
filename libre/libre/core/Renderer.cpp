@@ -56,7 +56,7 @@ void libre::Renderer::DrawRect(Color c, int x, int y, int w, int h)
     SDL_Rect r = { x, y, w, h };
 
     SetRendererColor(c);
-    SDL_RenderDrawRect(mpSDLRenderer, &r);
+    SDL_RenderFillRect(mpSDLRenderer, &r);
 }
 
 void libre::Renderer::DrawSprite(Sprite* sprite, Vector2f scale, Vector2i position)

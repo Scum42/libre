@@ -4,6 +4,8 @@
 #include "libre/input/Mouse.h"
 #include "libre/std/components/SpriteRendererComponent.h"
 
+#include <iostream>
+
 void FollowMouse::Startup()
 {
     sprite = GetGameObject()->GetComponent<SpriteRendererComponent>()->GetSprite();

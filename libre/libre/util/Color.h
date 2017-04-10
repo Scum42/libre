@@ -8,7 +8,7 @@ namespace libre
 {
     struct Color
     {
-        inline Color() {}
+        inline Color() { a = 255; }
         inline Color(Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255)
         {
             this->r = r;

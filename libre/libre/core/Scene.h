@@ -47,6 +47,16 @@ namespace libre
         // Adds a GameObject to the scene named 'name' and returns a pointer to it.
         GameObject* AddGameObject(std::string name);
 
+        // Adds a game object by class. Useful for predefined game objects.
+        template <typename T>
+        T* AddGameObject()
+        {
+            GameObject* newobj = new T();
+            newobj->mpScene = this;
+            mGameObjects.push_back(newobj);
+            return dynamic_cast<T*>(newobj);
+        }
+
         // Adds a GameObject to the scene named 'name,' attaches a component of type T, and returns a pointer to the GameObject.
         template <typename T>
         inline GameObject* AddGameObjectWithComponent(std::string name)
