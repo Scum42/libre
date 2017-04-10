@@ -5,6 +5,9 @@
 #include "libre/core/Component.h"
 #include "libre/util/LibreMath.h"
 
+#include "libre/util/Time.h"
+#include "libre/core/GameObject.h"
+
 namespace libre
 {
     class Sprite;
@@ -22,6 +25,9 @@ namespace libre
         Sprite* SetSprite(std::string filename);
         // Set the sprite that will be rendered
         Sprite* SetSprite(std::string filename, Recti spriteRect);
+
+        // Get the sprite that this component renders
+        Sprite* GetSprite() { return mpSprite; }
 
     private:
         Sprite* mpSprite;

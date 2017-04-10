@@ -1,3 +1,4 @@
 #include "Mouse.h"
 
-libre::Vector2i libre::Mouse::mPos = { 0.0f, 0.0f };
+libre::MouseState libre::Mouse::mState = libre::MouseState();
+libre::MouseState libre::Mouse::mLastState = libre::MouseState();

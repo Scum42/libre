@@ -33,6 +33,7 @@ namespace libre
         void DrawRect(Color c, int x, int y, int w, int h);
 
         void DrawSprite(Sprite* sprite, Vector2i position);
+        void DrawSprite(Sprite* sprite, Vector2i position, float angle);
 
     private:
 

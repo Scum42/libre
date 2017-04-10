@@ -23,6 +23,9 @@ namespace libre
         // Calls Initialize on all components.
         void Initialize();
 
+        // Calls Startup on all components.
+        void Startup();
+
         // Calls PreUpdate on all components.
         void PreUpdate();
 
@@ -62,11 +65,11 @@ namespace libre
         template <typename T>
         inline T* GetComponent()
         {
-            type_info info = typeid(T);
+            const type_info& info = typeid(T);
 
             for (Component* c : mComponents)
             {
-                if (typeid(*c) == info) return c;
+                if (typeid(*c) == info) return dynamic_cast<T*>(c);
             }
 
             return nullptr;

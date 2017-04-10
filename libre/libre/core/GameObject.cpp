@@ -40,6 +40,14 @@ void libre::GameObject::Initialize()
     }
 }
 
+void libre::GameObject::Startup()
+{
+    for (Component* c : mComponents)
+    {
+        c->Startup();
+    }
+}
+
 void libre::GameObject::PreUpdate()
 {
     for (Component* c : mComponents)

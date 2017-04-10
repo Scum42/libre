@@ -38,6 +38,7 @@ namespace libre
             if (mpScene) delete mpScene;
             mpScene = new T();
             mpScene->Initialize();
+            mpScene->InitializeGameObjects();
         }
 
         // Set the framerate

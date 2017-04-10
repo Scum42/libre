@@ -69,6 +69,24 @@ void libre::Renderer::DrawSprite(Sprite* sprite, Vector2i position)
     SDL_RenderCopy(mpSDLRenderer, sprite->GetTexture()->mpSDLTex, &sdlrSource, &sdlrDest);
 }
 
+void libre::Renderer::DrawSprite(Sprite * sprite, Vector2i position, float angle)
+{
+    // If the angle is 0...
+    if (angle == 0.0f)
+    {
+        // Use the faster version that doesn't bother with rotate
+        DrawSprite(sprite, position);
+        return;
+    }
+
+    SDL_Rect sdlrSource, sdlrDest;
+    Recti r = sprite->GetRect();
+    sdlrSource = { r.x, r.y, r.w, r.h };
+    sdlrDest = { position.x, position.y, r.w, r.h };
+
+    SDL_RenderCopyEx(mpSDLRenderer, sprite->GetTexture()->mpSDLTex, &sdlrSource, &sdlrDest, angle, NULL, SDL_FLIP_NONE);
+}
+
 void libre::Renderer::SetRendererColor(Color c)
 {
     SDL_SetRenderDrawColor(mpSDLRenderer, c.r, c.g, c.b, c.a);

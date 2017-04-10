@@ -6,14 +6,17 @@
 
 namespace libre
 {
+    class Game;
+
     class Scene
     {
     public:
+        friend Game;
 
         // Constructor.
-        inline Scene() { InternalInitialize(); }
+        inline Scene() {}
         // Destructor. Destroys all game objects.
-        inline ~Scene() { Cleanup(); InternalCleanup(); }
+        inline ~Scene() { Cleanup(); CleanupGameObjects(); }
 
         // This is where GameObjects are added to the scene.
         virtual void Initialize() = 0;
@@ -67,11 +70,11 @@ namespace libre
         // Predicate for list::remove_if
         struct marked { bool operator() (GameObject* go) { return go->IsMarkedForDestruction(); } };
 
-        // Internal init. Initializes private data.
-        inline void InternalInitialize() {}
+        // Initializes all GameObjects, then calls Startup on them
+        void InitializeGameObjects();
 
         // Internal cleanup. Destroys private data and game objects.
-        void InternalCleanup();
+        void CleanupGameObjects();
 
         std::list<GameObject*> mGameObjects;
     };

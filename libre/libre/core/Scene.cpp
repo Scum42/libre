@@ -13,7 +13,13 @@ libre::GameObject* libre::Scene::FindGameObject(const std::string& name)
     return nullptr;
 }
 
-void libre::Scene::InternalCleanup()
+void libre::Scene::InitializeGameObjects()
+{
+    for (GameObject* go : mGameObjects) go->Initialize();
+    for (GameObject* go : mGameObjects) go->Startup();
+}
+
+void libre::Scene::CleanupGameObjects()
 {
     for (auto i = mGameObjects.begin();
          i != mGameObjects.end();

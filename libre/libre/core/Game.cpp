@@ -30,7 +30,7 @@ libre::Game::Game()
     Time::deltaTime = 0.0f;
     Time::totalTime = 0.0f;
 
-    spInstance = this;
+    if (!spInstance) spInstance = this;
 
     mpScene = nullptr;
 
@@ -99,8 +99,8 @@ void libre::Game::PollEvents()
             }
             case SDL_MOUSEMOTION:
             {
-                Mouse::mPos.x = e.motion.x;
-                Mouse::mPos.y = e.motion.y;
+                Mouse::mState.position.x = e.motion.x;
+                Mouse::mState.position.y = e.motion.y;
                 break;
             }
         }
