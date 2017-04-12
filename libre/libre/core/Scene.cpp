@@ -55,7 +55,7 @@ void libre::Scene::internal_Cleanup()
 }
 
 libre::Scene::Scene():
-    mB2Gravity(0.0f, -9.8f),
+    mB2Gravity(0.0f, 9.8f),
     mB2World(mB2Gravity)
 {
     SetPixelsPerMeter(100.0f);
@@ -67,11 +67,18 @@ libre::Scene::~Scene()
     internal_Cleanup();
 }
 
-void libre::Scene::PreUpdate()
+void libre::Scene::PhysicsUpdate()
 {
-    // Update physics absolutely first
     mB2World.Step(Time::deltaTime, 8, 3);
 
+    for (auto iter : mGameObjects)
+    {
+        iter->PhysicsUpdate();
+    }
+}
+
+void libre::Scene::PreUpdate()
+{
     for (auto iter : mGameObjects)
     {
         iter->PreUpdate();

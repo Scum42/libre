@@ -50,6 +50,14 @@ void libre::GameObject::Startup()
     }
 }
 
+void libre::GameObject::PhysicsUpdate()
+{
+    for (Component* c : mComponents)
+    {
+        c->PhysicsUpdate();
+    }
+}
+
 void libre::GameObject::PreUpdate()
 {
     for (Component* c : mComponents)

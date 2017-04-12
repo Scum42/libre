@@ -53,6 +53,7 @@ int libre::Game::Start()
 
         PollEvents();
 
+        PhysicsUpdate();
         PreUpdate();
         Update();
         PostUpdate();
@@ -104,6 +105,11 @@ void libre::Game::PollEvents()
             }
         }
     }
+}
+
+void libre::Game::PhysicsUpdate()
+{
+    mpScene->PhysicsUpdate();
 }
 
 void libre::Game::PreUpdate()

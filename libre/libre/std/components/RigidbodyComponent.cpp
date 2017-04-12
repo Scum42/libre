@@ -5,23 +5,21 @@
 
 #include <iostream>
 
-void libre::RigidbodyComponent::Update()
+libre::RigidbodyComponent::RigidbodyComponent()
+{
+    mIsKinematic = false;
+    mDensity = 1.0f;
+    mFriction = 0.3f;
+
+    mpB2Body = nullptr;
+}
+
+void libre::RigidbodyComponent::PhysicsUpdate()
 {
     libre::Transform& trans = GetGameObject()->transform;
 
     trans.position = (Vector2f)(mpB2Body->GetPosition()) * GetGameObject()->GetScene()->GetMeterToPixelFactor();
     trans.rotation = mpB2Body->GetAngle() * RAD_TO_DEG_FACTOR;
-
-    //std::cout << "rb position " <<  "transform position " << trans.position.x << ", " << trans.position.y << std::endl;
-}
-
-libre::RigidbodyComponent::RigidbodyComponent()
-{
-    mIsKinematic = true;
-    mDensity = 1.0f;
-    mFriction = 0.3f;
-
-    mpB2Body = nullptr;
 }
 
 void libre::RigidbodyComponent::Initialize()
@@ -52,4 +50,5 @@ void libre::RigidbodyComponent::Initialize()
 void libre::RigidbodyComponent::Cleanup()
 {
     GetGameObject()->GetScene()->internal_GetB2World()->DestroyBody(mpB2Body);
+    mpB2Body = nullptr;
 }

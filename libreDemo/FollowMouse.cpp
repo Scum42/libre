@@ -14,8 +14,8 @@ void FollowMouse::Startup()
 void FollowMouse::Update()
 {
     Vector2f newPos = Vector2f::One() * 10.0f;
-    newPos.x = (float)(Mouse::GetPosition().x - sprite->GetRect().w / 2);
-    newPos.y = (float)(Mouse::GetPosition().y - sprite->GetRect().h / 2);
+    newPos.x = (float)(Mouse::GetPosition().x);
+    newPos.y = (float)(Mouse::GetPosition().y);
 
     GetGameObject()->transform.position = newPos;
 }

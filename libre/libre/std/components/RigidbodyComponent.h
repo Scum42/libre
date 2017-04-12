@@ -19,7 +19,7 @@ namespace libre
         void Initialize() override;
         void Cleanup() override;
 
-        void Update() override;
+        void PhysicsUpdate() override;
 
     private:
         // libre

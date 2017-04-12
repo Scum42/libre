@@ -17,6 +17,8 @@ namespace libre
         // Called when the scene starts, after all components have been Initialize()d
         inline virtual void Startup() {}
 
+        // Logic that happens when physics updates (meant for physics ONLY)
+        inline virtual void PhysicsUpdate() {}
         // Logic that should happen at the beginning of the frame
         inline virtual void PreUpdate() {}
         // Update logic

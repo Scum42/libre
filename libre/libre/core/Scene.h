@@ -30,6 +30,9 @@ namespace libre
         // This is where anything created in Initialize must be destroyed. GameObjects in the list are cleaned up internally.
         inline virtual void Cleanup() {}
 
+        // Calls PhysicsUpdate on all objects in the scene.
+        virtual void PhysicsUpdate();
+
         // Calls PreUpdate on all objects in the scene.
         virtual void PreUpdate();
 

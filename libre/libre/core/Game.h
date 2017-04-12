@@ -52,6 +52,9 @@ namespace libre
         // Poll SDL events.
         void PollEvents();
 
+        // Run every frame absolutely first. Can be overriden, but you must remember to call the base.
+        virtual void PhysicsUpdate();
+
         // Run every frame before Update(). Can be overridden, but you must remember to call the base funtion inside your custom PreUpdate().
         virtual void PreUpdate();
         

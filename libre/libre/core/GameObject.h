@@ -29,6 +29,9 @@ namespace libre
         // Calls Startup on all components.
         void Startup();
 
+        // Calls PhysicsUpdate on all components.
+        void PhysicsUpdate();
+
         // Calls PreUpdate on all components.
         void PreUpdate();
 

@@ -17,5 +17,7 @@ void DemoScene::Initialize()
 
     GameObject* goTest = AddGameObject("test");
     goTest->AddComponent<RigidbodyComponent>();
+    goTest->AddComponent<SpriteRendererComponent>()->SetSprite("../res/stones.png", { 100, 100, 200, 200 });
     goTest->transform.position = { 400, 200 };
+    goTest->transform.rotation = 20.0f;
 }

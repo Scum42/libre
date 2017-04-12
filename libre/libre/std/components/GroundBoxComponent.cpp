@@ -53,5 +53,4 @@ void libre::GroundBoxComponent::Update()
     t.rotation = mpB2GroundBoxBody->GetAngle() * RAD_TO_DEG_FACTOR;
 
     t.position *= GetGameObject()->GetScene()->GetMeterToPixelFactor();
-    t.position -= { mWidthInPixels * 0.5f, mHeightInPixels * 0.5f };
 }
