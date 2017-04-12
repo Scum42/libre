@@ -1,5 +1,6 @@
 #pragma once
 
+#include "libre/util/LibreMath.h"
 #include "libre/core/Component.h"
 
 #include "Box2D/Box2D.h"
@@ -10,14 +11,18 @@ namespace libre
     {
     public:
 
+        RigidbodyComponent();
+
         inline void SetIsKinematic(bool value) { mIsKinematic = value; }
         inline bool IsKinematic() { return mIsKinematic; }
 
+        void Initialize() override;
+        void Cleanup() override;
+
         void Update() override;
 
-        void Initialize() override;
-
     private:
+        // libre
         bool mIsKinematic;
         float mDensity;
         float mFriction;

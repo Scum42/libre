@@ -2,7 +2,7 @@
 #include "FollowMouse.h"
 #include "RotateDegPerSec.h"
 
-#include "libre/std/objects/GroundBoxGameObject.h"
+#include "libre/librestd.h"
 
 void DemoScene::Initialize()
 {
@@ -17,4 +17,5 @@ void DemoScene::Initialize()
 
     GameObject* goTest = AddGameObject("test");
     goTest->AddComponent<RigidbodyComponent>();
+    goTest->transform.position = { 400, 200 };
 }
