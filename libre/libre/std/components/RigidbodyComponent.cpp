@@ -9,7 +9,7 @@ libre::RigidbodyComponent::RigidbodyComponent()
 {
     mIsKinematic = false;
     mDensity = 1.0f;
-    mFriction = 0.3f;
+    mFriction = 1.0f;
 
     mpB2Body = nullptr;
 }
