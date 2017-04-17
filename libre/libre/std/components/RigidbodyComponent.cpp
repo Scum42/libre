@@ -22,6 +22,23 @@ void libre::RigidbodyComponent::PhysicsUpdate()
     trans.rotation = mpB2Body->GetAngle() * RAD_TO_DEG_FACTOR;
 }
 
+inline bool libre::RigidbodyComponent::SetIsKinematic(bool isKinematic)
+{
+    mIsKinematic = isKinematic;
+    mpB2Body->SetType(mIsKinematic ? b2_kinematicBody : b2_dynamicBody);
+    return mIsKinematic;
+}
+
+inline float libre::RigidbodyComponent::SetDensity(float density)
+{
+    return mDensity = density;
+}
+
+inline float libre::RigidbodyComponent::SetFriction(float friction)
+{
+    return mFriction = friction;
+}
+
 void libre::RigidbodyComponent::Initialize()
 {
     Vector2f position = GetGameObject()->transform.position;

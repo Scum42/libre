@@ -13,13 +13,19 @@ namespace libre
 
         RigidbodyComponent();
 
-        inline void SetIsKinematic(bool value) { mIsKinematic = value; }
-        inline bool IsKinematic() { return mIsKinematic; }
-
         void Initialize() override;
         void Cleanup() override;
 
         void PhysicsUpdate() override;
+
+        inline bool IsKinematic() { return mIsKinematic; }
+        inline bool SetIsKinematic(bool isKinematic);
+
+        inline float GetDensity() { return mDensity; }
+        inline float SetDensity(float density);
+
+        inline float GetFriction() { return mFriction; }
+        inline float SetFriction(float friction);
 
     private:
         // libre
