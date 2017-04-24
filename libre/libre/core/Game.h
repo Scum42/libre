@@ -15,6 +15,9 @@ namespace libre
 
         // Get the game internally
         static Game* GetInstance() { return spInstance; }
+        static Window* GetWindow() { return spInstance->mpWindow; }
+        static Renderer* GetRenderer() { return spInstance->mpWindow->mpRenderer; }
+        static Scene* GetCurrentScene() { return spInstance->mpScene; }
 
         // Constructor
         Game();
@@ -29,7 +32,7 @@ namespace libre
         inline void Kill(int exitCode = 1) { exit(exitCode); }
 
         // Get the window.
-        inline Window* GetWindow() { return mpWindow; }
+        //inline Window* GetWindow() { return mpWindow; }
 
         // Set the scene. Destroys the old scene and creates the new one.
         template <typename T>

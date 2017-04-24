@@ -58,9 +58,9 @@ int libre::Game::Start()
         Update();
         PostUpdate();
 
-        mpWindow->GetRenderer()->Clear();
+        Game::GetRenderer()->Clear();
         Render();
-        mpWindow->GetRenderer()->Flip();
+        Game::GetRenderer()->Flip();
 
         // Wait until the frame should end
         while (SDL_GetPerformanceCounter() < end);

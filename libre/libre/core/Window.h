@@ -24,9 +24,12 @@ namespace libre
         LIBRE_WINDOW_POSITION_CENTER    = 0b100
     };
 
+    class Game;
+
     class Window
     {
     public:
+        friend Game;
         friend Renderer;
 
         // Constructor with the name of the window, resolution width, resolution height, and any flags.
@@ -46,7 +49,7 @@ namespace libre
         Vector2i GetDimensions();
 
         // Get the renderer associated with this window
-        Renderer* GetRenderer() { return mpRenderer; }
+        //Renderer* GetRenderer() { return mpRenderer; }
 
     private:
 

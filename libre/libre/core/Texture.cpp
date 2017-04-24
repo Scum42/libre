@@ -13,7 +13,7 @@ void libre::Texture::LoadFromFile(std::string path)
     // Destroy the texture if we already have one;
     // then convert the surface to a texture
     if (mpSDLTex) SDL_DestroyTexture(mpSDLTex);
-    mpSDLTex = SDL_CreateTextureFromSurface(Game::GetInstance()->GetWindow()->GetRenderer()->mpSDLRenderer, surf);
+    mpSDLTex = SDL_CreateTextureFromSurface(Game::GetRenderer()->mpSDLRenderer, surf);
 
     // Delete the temporary surface
     SDL_FreeSurface(surf);

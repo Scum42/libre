@@ -7,8 +7,9 @@
 void DemoScene::Initialize()
 {
     GameObject* goStones = AddGameObject("stones");
-    goStones->AddComponent<SpriteRendererComponent>()->SetSprite("../res/stones.png", { 50, 50, 100, 100 });
+    goStones->AddComponent<SpriteRendererComponent>()->SetSprite("../res/stones.png", { 50, 50, 150, 150 });
     goStones->AddComponent<RotateDegPerSec>()->SetSpeed(20.0f);
+    goStones->AddComponent<RigidbodyComponent>()->SetIsKinematic(true);
     goStones->AddComponent<FollowMouse>();
 
     GameObject* goGround = AddGameObject("ground");

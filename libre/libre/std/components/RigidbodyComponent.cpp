@@ -1,5 +1,6 @@
 #include "RigidbodyComponent.h"
 
+#include "libre\core\Game.h"
 #include "libre/core/GameObject.h"
 #include "libre/core/Scene.h"
 
@@ -17,24 +18,37 @@ libre::RigidbodyComponent::RigidbodyComponent()
 void libre::RigidbodyComponent::PhysicsUpdate()
 {
     libre::Transform& trans = GetGameObject()->transform;
+    const float ptom = Game::GetCurrentScene()->GetPixelToMeterFactor();
+    const float mtop = Game::GetCurrentScene()->GetMeterToPixelFactor();
 
-    trans.position = (Vector2f)(mpB2Body->GetPosition()) * GetGameObject()->GetScene()->GetMeterToPixelFactor();
-    trans.rotation = mpB2Body->GetAngle() * RAD_TO_DEG_FACTOR;
+    if (IsKinematic())
+    {
+        b2Vec2 pos;
+        pos.x = trans.position.x * ptom;
+        pos.y = trans.position.y * ptom;
+
+        mpB2Body->SetTransform(pos, trans.rotation * DEG_TO_RAD_FACTOR);
+    }
+    else
+    {
+        trans.position = (Vector2f)(mpB2Body->GetPosition()) * mtop;
+        trans.rotation = mpB2Body->GetAngle() * RAD_TO_DEG_FACTOR;
+    }
 }
 
-inline bool libre::RigidbodyComponent::SetIsKinematic(bool isKinematic)
+bool libre::RigidbodyComponent::SetIsKinematic(bool isKinematic)
 {
     mIsKinematic = isKinematic;
-    mpB2Body->SetType(mIsKinematic ? b2_kinematicBody : b2_dynamicBody);
+    if (mpB2Body) mpB2Body->SetType(mIsKinematic ? b2_kinematicBody : b2_dynamicBody);
     return mIsKinematic;
 }
 
-inline float libre::RigidbodyComponent::SetDensity(float density)
+float libre::RigidbodyComponent::SetDensity(float density)
 {
     return mDensity = density;
 }
 
-inline float libre::RigidbodyComponent::SetFriction(float friction)
+float libre::RigidbodyComponent::SetFriction(float friction)
 {
     return mFriction = friction;
 }

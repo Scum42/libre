@@ -5,7 +5,7 @@
 
 void libre::RectRendererComponent::Render()
 {
-    Game::GetInstance()->GetWindow()->GetRenderer()
+    Game::GetRenderer()
         ->DrawRect(mDrawColor,
                    Round(GetGameObject()->transform.position.x - mHalfWidth),
                    Round(GetGameObject()->transform.position.y - mHalfHeight),
