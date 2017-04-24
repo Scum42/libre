@@ -9,6 +9,7 @@ void DemoScene::Initialize()
     GameObject* goStones = AddGameObject("stones");
     goStones->AddComponent<SpriteRendererComponent>()->SetSprite("../res/stones.png", { 50, 50, 150, 150 });
     goStones->AddComponent<RotateDegPerSec>()->SetSpeed(20.0f);
+    goStones->AddComponent<BoundingBoxComponent>()->SetDimensions(100, 100);
     goStones->AddComponent<RigidbodyComponent>()->SetIsKinematic(true);
     goStones->AddComponent<FollowMouse>();
 
@@ -18,6 +19,7 @@ void DemoScene::Initialize()
 
     GameObject* goTest = AddGameObject("test");
     goTest->AddComponent<SpriteRendererComponent>()->SetSprite("../res/stones.png", { 100, 100, 200, 200 });
+    goTest->AddComponent<BoundingBoxComponent>()->SetDimensions(100, 100);
     goTest->transform.position = { 400, 200 };
     goTest->transform.rotation = 20.0f;
     

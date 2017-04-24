@@ -14,6 +14,7 @@ namespace libre
         RigidbodyComponent();
 
         void Initialize() override;
+        void Startup() override;
         void Cleanup() override;
 
         void PhysicsUpdate() override;

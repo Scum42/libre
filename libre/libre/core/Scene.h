@@ -88,18 +88,6 @@ namespace libre
         // Get scene name
         inline const std::string& GetName() { return mName; }
 
-        // Set the pixel-per-meter ratio (and the inverse)
-        void SetPixelsPerMeter(float pixelsPerMeter);
-
-        // Set the meter-per-pixel ratio (and the inverse)
-        void SetMetersPerPixel(float metersPerPixel);
-
-        // Get the pixel-per-meter ratio
-        inline float GetMeterToPixelFactor() { return mPixelsPerMeter; }
-
-        // Get the meter-per-pixel ratio
-        inline float GetPixelToMeterFactor() { return mMetersPerPixel; }
-
         // Get the Box2D 'world' that is being used. Meant for internal use.
         inline b2World* internal_GetB2World() { return &mB2World; }
 
@@ -121,10 +109,6 @@ namespace libre
 
         // Name of the scene
         std::string mName;
-
-        // Box2D stuff
-        float mPixelsPerMeter;
-        float mMetersPerPixel;
 
         b2Vec2 mB2Gravity;
         b2World mB2World;

@@ -16,18 +16,6 @@ libre::GameObject* libre::Scene::FindGameObject(const std::string& name)
     return nullptr;
 }
 
-void libre::Scene::SetPixelsPerMeter(float pixelsPerMeter)
-{
-    mPixelsPerMeter = pixelsPerMeter;
-    mMetersPerPixel = 1.0f / pixelsPerMeter;
-}
-
-void libre::Scene::SetMetersPerPixel(float metersPerPixel)
-{
-    mMetersPerPixel = metersPerPixel;
-    mPixelsPerMeter = 1.0f / metersPerPixel;
-}
-
 void libre::Scene::internal_Initialize()
 {
     mName = typeid(this).name();
@@ -54,12 +42,10 @@ void libre::Scene::internal_Cleanup()
     mGameObjects.clear();
 }
 
-libre::Scene::Scene():
+libre::Scene::Scene() :
     mB2Gravity(0.0f, 9.8f),
     mB2World(mB2Gravity)
-{
-    SetPixelsPerMeter(100.0f);
-}
+{}
 
 libre::Scene::~Scene()
 {

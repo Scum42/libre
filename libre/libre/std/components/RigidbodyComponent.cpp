@@ -4,6 +4,8 @@
 #include "libre/core/GameObject.h"
 #include "libre/core/Scene.h"
 
+#include "BoundingBoxComponent.h"
+
 #include <iostream>
 
 libre::RigidbodyComponent::RigidbodyComponent()
@@ -18,20 +20,18 @@ libre::RigidbodyComponent::RigidbodyComponent()
 void libre::RigidbodyComponent::PhysicsUpdate()
 {
     libre::Transform& trans = GetGameObject()->transform;
-    const float ptom = Game::GetCurrentScene()->GetPixelToMeterFactor();
-    const float mtop = Game::GetCurrentScene()->GetMeterToPixelFactor();
 
     if (IsKinematic())
     {
         b2Vec2 pos;
-        pos.x = trans.position.x * ptom;
-        pos.y = trans.position.y * ptom;
+        pos.x = trans.position.x * PIXEL_TO_METER_FACTOR;
+        pos.y = trans.position.y * PIXEL_TO_METER_FACTOR;
 
         mpB2Body->SetTransform(pos, trans.rotation * DEG_TO_RAD_FACTOR);
     }
     else
     {
-        trans.position = (Vector2f)(mpB2Body->GetPosition()) * mtop;
+        trans.position = (Vector2f)(mpB2Body->GetPosition()) * METER_TO_PIXEL_FACTOR;
         trans.rotation = mpB2Body->GetAngle() * RAD_TO_DEG_FACTOR;
     }
 }
@@ -45,12 +45,28 @@ bool libre::RigidbodyComponent::SetIsKinematic(bool isKinematic)
 
 float libre::RigidbodyComponent::SetDensity(float density)
 {
+    mDensity = density;
+    if (mpB2Body)
+    {
+        for (b2Fixture* f = mpB2Body->GetFixtureList(); f; f = f->GetNext())
+        {
+            f->SetDensity(mDensity);
+        }
+    }
     return mDensity = density;
 }
 
 float libre::RigidbodyComponent::SetFriction(float friction)
 {
-    return mFriction = friction;
+    mFriction = friction;
+    if (mpB2Body)
+    {
+        for (b2Fixture* f = mpB2Body->GetFixtureList(); f; f = f->GetNext())
+        {
+            f->SetFriction(mFriction);
+        }
+    }
+    return mFriction;
 }
 
 void libre::RigidbodyComponent::Initialize()
@@ -58,24 +74,30 @@ void libre::RigidbodyComponent::Initialize()
     Vector2f position = GetGameObject()->transform.position;
     float rotation = GetGameObject()->transform.rotation;
 
-    float ptom = GetGameObject()->GetScene()->GetPixelToMeterFactor();
-
     b2BodyDef bodyDef;
     bodyDef.type = mIsKinematic ? b2_kinematicBody : b2_dynamicBody;
-    bodyDef.position.Set(position.x * ptom, position.y * ptom);
+    bodyDef.position.Set(position.x * PIXEL_TO_METER_FACTOR, position.y * PIXEL_TO_METER_FACTOR);
     bodyDef.angle = rotation * DEG_TO_RAD_FACTOR;
 
     mpB2Body = GetGameObject()->GetScene()->mB2World.CreateBody(&bodyDef);
+}
 
-    b2PolygonShape shape;
-    shape.SetAsBox(1.0f, 1.0f);
+void libre::RigidbodyComponent::Startup()
+{
+    BoundingBoxComponent* bb = GetGameObject()->GetComponent<BoundingBoxComponent>();
 
-    b2FixtureDef fixtureDef;
-    fixtureDef.shape = &shape;
-    fixtureDef.density = mDensity;
-    fixtureDef.friction = mFriction;
+    if (bb)
+    {
+        b2PolygonShape shape;
+        shape.SetAsBox(bb->GetHalfWidth() * PIXEL_TO_METER_FACTOR, bb->GetHalfHeight() * PIXEL_TO_METER_FACTOR);
 
-    mpB2Body->CreateFixture(&fixtureDef);
+        b2FixtureDef fixtureDef;
+        fixtureDef.shape = &shape;
+        fixtureDef.density = mDensity;
+        fixtureDef.friction = mFriction;
+
+        mpB2Body->CreateFixture(&fixtureDef);
+    }
 }
 
 void libre::RigidbodyComponent::Cleanup()

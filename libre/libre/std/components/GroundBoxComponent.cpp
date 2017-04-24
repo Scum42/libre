@@ -8,21 +8,19 @@
 void libre::GroundBoxComponent::Initialize()
 {
     mpB2WorldFromScene = GetGameObject()->GetScene()->internal_GetB2World();
-    float ptom = GetGameObject()->GetScene()->GetPixelToMeterFactor();
-    float mtop = GetGameObject()->GetScene()->GetMeterToPixelFactor();
 
     Vector2f dim = Game::GetInstance()->GetWindow()->GetDimensions();
 
     Vector2f finalpos;
     finalpos.x = dim.x * 0.5f;
     finalpos.y = dim.y - (mGroundHeightInPixels * 0.5f);
-    finalpos *= ptom;
+    finalpos *= PIXEL_TO_METER_FACTOR;
 
     Vector2f finaldim;
     finaldim.x = dim.x * 0.5f;
     finaldim.y = mGroundHeightInPixels * 0.5f;
     mHeightInPixels = finaldim.y;
-    finaldim *= ptom;
+    finaldim *= PIXEL_TO_METER_FACTOR;
 
     mWidthInPixels = dim.x;
     mHeightInPixels = mGroundHeightInPixels;
@@ -52,5 +50,5 @@ void libre::GroundBoxComponent::Update()
     t.position = mpB2GroundBoxBody->GetPosition();
     t.rotation = mpB2GroundBoxBody->GetAngle() * RAD_TO_DEG_FACTOR;
 
-    t.position *= GetGameObject()->GetScene()->GetMeterToPixelFactor();
+    t.position *= METER_TO_PIXEL_FACTOR;
 }

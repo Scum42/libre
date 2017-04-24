@@ -7,12 +7,14 @@
 
 namespace libre
 {
-    const double PI = 3.141592653589793;
-    const double PI_INV = 1.0 / PI;
-    const double TAU = PI * 2.0;
-    const double TAU_INV = 1.0 / TAU;
-    const double DEG_TO_RAD_FACTOR = PI / 180.0;
-    const double RAD_TO_DEG_FACTOR = 180.0 / PI;
+    const float PI = 3.141592653589793f;
+    const float PI_INV = 1.0f / PI;
+    const float TAU = PI * 2.0f;
+    const float TAU_INV = 1.0f / TAU;
+    const float DEG_TO_RAD_FACTOR = PI / 180.0f;
+    const float RAD_TO_DEG_FACTOR = 180.0f / PI;
+    const float METER_TO_PIXEL_FACTOR = 100.0f;
+    const float PIXEL_TO_METER_FACTOR = 1.0f / METER_TO_PIXEL_FACTOR;
 
     template <typename T>
     struct Vector2
