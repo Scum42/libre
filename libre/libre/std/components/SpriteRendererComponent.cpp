@@ -32,3 +32,11 @@ libre::Sprite* libre::SpriteRendererComponent::SetSprite(std::string filename, l
     Sprite* spr = tex->CreateSpriteFromSubsection(spriteRect);
     return SetSprite(spr);
 }
+
+libre::BoundingBoxComponent* libre::SpriteRendererComponent::AddBoundingBoxComponent()
+{
+    BoundingBoxComponent* bb = GetGameObject()->AddComponent<BoundingBoxComponent>();
+    bb->SetDimensions(mpSprite->GetRect().dim);
+
+    return bb;
+}

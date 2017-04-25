@@ -110,7 +110,7 @@ namespace libre
     };
 
     template <typename T>
-    struct Rect
+    union Rect
     {
         inline Rect()
         {
@@ -128,10 +128,8 @@ namespace libre
             this->h = h;
         }
 
-        T x;
-        T y;
-        T w;
-        T h;
+        struct { T x, y, w, h; };
+        struct { Vector2<T> pos, dim; };
 
         static Rect<T> Zero() { return Rect<T>(); }
     };

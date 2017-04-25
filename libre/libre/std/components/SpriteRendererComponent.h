@@ -8,6 +8,8 @@
 #include "libre/util/Time.h"
 #include "libre/core/GameObject.h"
 
+#include "BoundingBoxComponent.h"
+
 namespace libre
 {
     class Sprite;
@@ -28,6 +30,9 @@ namespace libre
 
         // Get the sprite that this component renders
         Sprite* GetSprite() { return mpSprite; }
+
+        // Add a BoundingBoxComponent with my dimensions
+        BoundingBoxComponent* AddBoundingBoxComponent();
 
     private:
         Sprite* mpSprite;
