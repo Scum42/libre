@@ -7,9 +7,9 @@
 
 void libre::GroundBoxComponent::Initialize()
 {
-    mpB2WorldFromScene = GetGameObject()->GetScene()->internal_GetB2World();
+    mpB2WorldFromScene = Game::GetCurrentScene()->internal_GetB2World();
 
-    Vector2f dim = Game::GetInstance()->GetWindow()->GetDimensions();
+    Vector2f dim = Game::GetWindow()->GetDimensions();
 
     Vector2f finalpos;
     finalpos.x = dim.x * 0.5f;
@@ -25,11 +25,20 @@ void libre::GroundBoxComponent::Initialize()
     mWidthInPixels = dim.x;
     mHeightInPixels = mGroundHeightInPixels;
 
-    mB2GroundBoxDef.position.Set(finalpos.x, finalpos.y);
-    mB2GroundBoxDef.type = b2_kinematicBody;
-    mpB2GroundBoxBody = mpB2WorldFromScene->CreateBody(&mB2GroundBoxDef);
-    mB2GroundBox.SetAsBox(finaldim.x, finaldim.y);
-    mpB2GroundBoxBody->CreateFixture(&mB2GroundBox, 0.0f);
+    b2PolygonShape box;
+    box.SetAsBox(finaldim.x, finaldim.y);
+
+    b2BodyDef bodydef;
+    bodydef.position.Set(finalpos.x, finalpos.y);
+    bodydef.type = b2_kinematicBody;
+    
+    mpB2GroundBoxBody = mpB2WorldFromScene->CreateBody(&bodydef);
+    mpB2GroundBoxBody->CreateFixture(&box, 0.0f);
+}
+
+void libre::GroundBoxComponent::Cleanup()
+{
+    mpB2WorldFromScene->DestroyBody(mpB2GroundBoxBody);
 }
 
 void libre::GroundBoxComponent::Startup()

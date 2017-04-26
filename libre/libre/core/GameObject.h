@@ -12,7 +12,6 @@ namespace libre
     class GameObject
     {
     public:
-        friend Scene;
 
         // Constructor.
         GameObject();
@@ -48,7 +47,7 @@ namespace libre
         GameObject* GetParent() { return mpParent; }
 
         // Returns the scene the game object is in.
-        Scene* GetScene() { return mpScene; }
+        //Scene* GetScene() { return mpScene; }
 
         // Returns the object's name.
         const std::string& GetName() { return mName; }
@@ -110,7 +109,7 @@ namespace libre
 
     private:
         GameObject* mpParent;
-        Scene* mpScene;
+        //Scene* mpScene;
         std::string mName;
         std::vector<Component*> mComponents;
         bool mIsMarkedForDeath;

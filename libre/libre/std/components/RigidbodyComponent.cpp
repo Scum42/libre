@@ -12,7 +12,7 @@ libre::RigidbodyComponent::RigidbodyComponent()
 {
     mIsKinematic = false;
     mDensity = 1.0f;
-    mFriction = 1.0f;
+    mFriction = 0.5f;
 
     mpB2Body = nullptr;
 }
@@ -79,7 +79,7 @@ void libre::RigidbodyComponent::Initialize()
     bodyDef.position.Set(position.x * PIXEL_TO_METER_FACTOR, position.y * PIXEL_TO_METER_FACTOR);
     bodyDef.angle = rotation * DEG_TO_RAD_FACTOR;
 
-    mpB2Body = GetGameObject()->GetScene()->mB2World.CreateBody(&bodyDef);
+    mpB2Body = Game::GetCurrentScene()->mB2World.CreateBody(&bodyDef);
 }
 
 void libre::RigidbodyComponent::Startup()
@@ -102,6 +102,6 @@ void libre::RigidbodyComponent::Startup()
 
 void libre::RigidbodyComponent::Cleanup()
 {
-    GetGameObject()->GetScene()->internal_GetB2World()->DestroyBody(mpB2Body);
+    Game::GetCurrentScene()->internal_GetB2World()->DestroyBody(mpB2Body);
     mpB2Body = nullptr;
 }

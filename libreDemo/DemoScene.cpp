@@ -12,13 +12,13 @@ void DemoScene::Initialize()
     spr = goStones->AddComponent<SpriteRendererComponent>();
     spr->SetSprite("../res/stones.png", { 50, 50, 100, 100 });
     spr->AddBoundingBoxComponent();
-
-    //goStones->AddComponent<RotateDegPerSec>()->SetSpeed(20.0f);
+    
     goStones->AddComponent<RigidbodyComponent>()->SetIsKinematic(true);
     goStones->AddComponent<FollowMouse>();
 
     GameObject* goGround = AddGameObject("ground");
-    goGround->AddComponent<GroundBoxComponent>()->SetGroundHeight(50.0f);
+    //goGround->AddComponent<GroundBoxComponent>()->SetGroundHeight(50.0f);
+    goGround->AddComponent<ScreenEdgeWallComponent>();
     goGround->AddComponent<RectRendererComponent>();
 
     GameObject* goTest = AddGameObject("test");
@@ -38,6 +38,4 @@ void DemoScene::Initialize()
 
     goTest2->transform.position = { 400, 100 };
     goTest2->transform.rotation = 10.0f;
-
-
 }

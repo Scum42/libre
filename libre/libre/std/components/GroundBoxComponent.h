@@ -17,16 +17,14 @@ namespace libre
         inline float GetWidth() { return mHeightInPixels; }
 
         void Initialize() override;
+        void Cleanup() override;
         void Startup() override;
 
         void Update() override;
 
     private:
 
-        b2BodyDef mB2GroundBoxDef;
-        b2PolygonShape mB2GroundBox;
         b2Body* mpB2GroundBoxBody;
-
         b2World* mpB2WorldFromScene;
 
         float mWidthInPixels;

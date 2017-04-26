@@ -98,7 +98,6 @@ void libre::Scene::Render()
 libre::GameObject* libre::Scene::AddGameObject()
 {
     GameObject* gop = new GameObject();
-    gop->mpScene = this;
 
     mGameObjects.push_back(gop);
     return gop;
@@ -107,7 +106,6 @@ libre::GameObject* libre::Scene::AddGameObject()
 libre::GameObject* libre::Scene::AddGameObject(std::string name)
 {
     GameObject* gop = new GameObject(name);
-    gop->mpScene = this;
 
     mGameObjects.push_back(gop);
     return gop;
