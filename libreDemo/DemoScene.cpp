@@ -12,12 +12,13 @@ void DemoScene::Initialize()
     spr = goStones->AddComponent<SpriteRendererComponent>();
     spr->SetSprite("../res/stones.png", { 50, 50, 100, 100 });
     spr->AddBoundingBoxComponent();
-    
+
     goStones->AddComponent<RigidbodyComponent>()->SetIsKinematic(true);
     goStones->AddComponent<FollowMouse>();
+    goStones->AddComponent<RotateDegPerSec>()->SetSpeed(20.0f);
 
     GameObject* goGround = AddGameObject("ground");
-    //goGround->AddComponent<GroundBoxComponent>()->SetGroundHeight(50.0f);
+    goGround->AddComponent<GroundBoxComponent>()->SetGroundHeight(50.0f);
     goGround->AddComponent<ScreenEdgeWallComponent>();
     goGround->AddComponent<RectRendererComponent>();
 

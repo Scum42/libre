@@ -47,7 +47,7 @@ namespace libre
         GameObject* GetParent() { return mpParent; }
 
         // Returns the scene the game object is in.
-        //Scene* GetScene() { return mpScene; }
+        GameObject* SetParent(GameObject* parent) { return mpParent = parent; }
 
         // Returns the object's name.
         const std::string& GetName() { return mName; }

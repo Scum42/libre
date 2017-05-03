@@ -92,6 +92,14 @@ void libre::GameObject::Render()
 
 libre::Transform libre::GameObject::GetGlobalTransform()
 {
-    // TODO: GetGlobalTransform
-    return transform;
+    Transform composite = transform;
+    GameObject* parent = this;
+
+    // Step up the parents until we hit an object without a parent
+    while (parent = parent->GetParent())
+    {
+        composite += parent->transform;
+    }
+    
+    return composite;
 }

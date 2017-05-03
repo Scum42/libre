@@ -9,9 +9,9 @@ void libre::SpriteRendererComponent::Render()
 {
     Renderer* rend = Game::GetRenderer();
 
-    Vector2f posf = GetGameObject()->transform.position - Vector2f(mpSprite->GetRect().w * 0.5f, mpSprite->GetRect().h * 0.5f);
+    Vector2f posf = GetGameObject()->GetGlobalTransform().position - Vector2f(mpSprite->GetRect().w * 0.5f, mpSprite->GetRect().h * 0.5f);
     Vector2i pos = { Round(posf.x), Round(posf.y) };
-    rend->DrawSprite(mpSprite, GetGameObject()->transform.scale, pos, GetGameObject()->transform.rotation);
+    rend->DrawSprite(mpSprite, GetGameObject()->GetGlobalTransform().scale, pos, GetGameObject()->GetGlobalTransform().rotation);
 }
 
 libre::Sprite* libre::SpriteRendererComponent::SetSprite(libre::Sprite* sprite)
