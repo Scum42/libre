@@ -1,6 +1,6 @@
 #include "DemoScene.h"
-#include "FollowMouse.h"
-#include "RotateDegPerSec.h"
+#include "components/FollowMouse.h"
+#include "components/RotateDegPerSec.h"
 
 #include "libre/librestd.h"
 

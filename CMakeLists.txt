@@ -24,6 +24,7 @@ set(SDL_INCLUDE "${SDL}/include")
 set(SDL_IMAGE_INCLUDE "${SDL_IMAGE}/include")
 set(BOX2D_INCLUDE "${BOX2D}/include")
 set(LIBRE_INCLUDE "${CMAKE_SOURCE_DIR}/libre")
+set(DEMO_INCLUDE "${CMAKE_SOURCE_DIR}/libreDemo")
 
 set(SDL_LIB "${SDL}/lib/x86")
 set(SDL_IMAGE_LIB "${SDL_IMAGE}/lib/x86")
@@ -36,6 +37,7 @@ include_directories(
 	${BOX2D_INCLUDE}
 	${SDL_IMAGE_INCLUDE}
 	${LIBRE_INCLUDE}
+	${DEMO_INCLUDE}
 )
 
 link_directories(

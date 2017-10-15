@@ -1,7 +1,7 @@
 #include "DemoGame.h"
 
-#include "FollowMouse.h"
-#include "DemoScene.h"
+#include "components/FollowMouse.h"
+#include "scenes/DemoScene.h"
 
 void DemoGame::Initialize()
 {
